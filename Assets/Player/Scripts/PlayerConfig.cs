@@ -27,6 +27,11 @@ public class PlayerConfig : ScriptableObject
     [field: SerializeField, Range(0, 30)] public float Damage { get; set; }= 3f;
     
     
+    [field: Header("radius Attack Stats")]
+    [field: SerializeField] public Vector3 BoxCenter { get; set; }
+    [field: SerializeField] public Vector3 BoxSize { get; set; }
+    
     [field: Header("Health Stats")]
     [field: SerializeField, Range(0, 1000)] public int Health { get; set; } = 100;
+
 }
