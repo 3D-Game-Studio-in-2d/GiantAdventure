@@ -18,6 +18,8 @@ MonoBehaviour:
   <RollDuration>k__BackingField: 0.16
   <RollSpeed>k__BackingField: 20.7
   <AttackDuration>k__BackingField: 0.3
-  <AttackSlowdown>k__BackingField: 0.6
+  <AttackSlowdown>k__BackingField: 0.818
   <Damage>k__BackingField: 3
+  <BoxCenter>k__BackingField: {x: 1, y: 0, z: 0}
+  <BoxSize>k__BackingField: {x: 3, y: 3, z: 3}
   <Health>k__BackingField: 100

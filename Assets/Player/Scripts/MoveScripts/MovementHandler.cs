@@ -11,7 +11,6 @@ public class MovementHandler
         private IGravitable _gravitable;
         private IJump _jump;
         private IRoll _roll;
-        
 
         public MovementHandler(IInput input ,IMovable movable, IGravitable gravitable, IJump jump, IRoll roll)
         {

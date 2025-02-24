@@ -7,11 +7,11 @@ public class DesktopInput : IInput, ITickable
     public event Action<Vector3> ClickMove;
     public event Action ClickJump;
     public event Action ClickRoll;
+    public event Action ClickAttack;
 
     public DesktopInput()
     {
         Debug.Log("DesktopInput Создан");
-
     }
     
     private void Update()
@@ -35,6 +35,11 @@ public class DesktopInput : IInput, ITickable
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             ClickRoll?.Invoke();
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            ClickAttack?.Invoke();
         }
     }
 }

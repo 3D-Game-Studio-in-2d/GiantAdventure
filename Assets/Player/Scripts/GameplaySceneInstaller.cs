@@ -9,11 +9,23 @@ public class GameplaySceneInstaller : MonoInstaller
         
         public override void InstallBindings()
         {
-                Container.Bind<PlayerConfig>().FromInstance(_playerConfig).AsSingle();
-                Player player = Container.InstantiatePrefabForComponent<Player>(_playerPrefab, _playerSpawnPoint.position, Quaternion.identity, null);
-                Container.BindInterfacesAndSelfTo<Player>().FromInstance(player).AsSingle();
-                
                 Container.BindInterfacesAndSelfTo<DesktopInput>().AsSingle();
+                Container.Bind<PlayerConfig>().FromInstance(_playerConfig).AsSingle();
+    
+                // Создаём игрока и регистрируем его как IMovable
+                Player player = Container.InstantiatePrefabForComponent<Player>(_playerPrefab, _playerSpawnPoint.position, Quaternion.identity, null);
+                player.gameObject.SetActive(true);
+                Container.BindInterfacesAndSelfTo<Player>().FromInstance(player).AsSingle();
+
                 Container.Bind<MovementHandler>().AsSingle().NonLazy();
+                // Теперь можно привязывать AttackHandler
+                Container.BindInterfacesAndSelfTo<AttackController>()
+                        //.FromComponentOn(player.gameObject)
+                        //.FromComponentOnRoot() // Берёт компонент с корневого объекта (т.е. там же, где Player)
+                        .FromNewComponentOn(player.gameObject)
+                        .AsSingle()
+                        //.WithArguments(Container.Resolve<IMovable>())
+                        .NonLazy();
+
         }
 }
