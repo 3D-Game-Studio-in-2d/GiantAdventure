@@ -7,10 +7,13 @@ public class GameplaySceneInstaller : MonoInstaller
         [SerializeField] private Transform _playerSpawnPoint;
         [SerializeField] private PlayerConfig _playerConfig;
         
+        [SerializeField] private WanderingFlameConfig _wanderingFlameConfig;
+        
         public override void InstallBindings()
         {
                 Container.BindInterfacesAndSelfTo<DesktopInput>().AsSingle();
                 Container.Bind<PlayerConfig>().FromInstance(_playerConfig).AsSingle();
+                Container.Bind<WanderingFlameConfig>().FromInstance(_wanderingFlameConfig).AsSingle();
     
                 // Создаём игрока и регистрируем его как IMovable
                 Player player = Container.InstantiatePrefabForComponent<Player>(_playerPrefab, _playerSpawnPoint.position, Quaternion.identity, null);
