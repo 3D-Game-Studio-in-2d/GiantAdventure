@@ -8,7 +8,7 @@ public class Player : MonoBehaviour, IMovable, IGravitable, IJump, IRoll, IAttac
 
     [field: Header("Move Stats")]
     public CharacterController CharacterController { get; private set; }
-    public Vector3 Position { get; set; }
+    public Transform Transform { get; set; }
     public float Speed { get; set; } = 5f;
     public bool FacingRight { get; set; } = true;
     public Vector3 Velocity { get; set; } = Vector3.zero;
@@ -67,11 +67,10 @@ public class Player : MonoBehaviour, IMovable, IGravitable, IJump, IRoll, IAttac
     private void Awake()
     {
         CharacterController = GetComponent<CharacterController>();
-        Debug.Log("Игрок Создан");
     }
 
     private void Update()
     {
-        Position = transform.position;
+        Transform = transform;
     }
 }

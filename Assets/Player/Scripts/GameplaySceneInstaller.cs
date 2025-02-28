@@ -1,31 +1,51 @@
+using Cinemachine;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 public class GameplaySceneInstaller : MonoInstaller
 {
-        [SerializeField] private GameObject _playerPrefab;
-        [SerializeField] private Transform _playerSpawnPoint;
-        [SerializeField] private PlayerConfig _playerConfig;
+        [SerializeField] private GameObject playerPrefab;
+        [SerializeField] private Transform playerSpawnPoint;
+        [SerializeField] private PlayerConfig playerConfig;
+        [SerializeField] private SettingsCamera cameraPrefab;
+        
+        private Player _player;
         
         public override void InstallBindings()
         {
-                Container.BindInterfacesAndSelfTo<DesktopInput>().AsSingle();
-                Container.Bind<PlayerConfig>().FromInstance(_playerConfig).AsSingle();
-    
-                // Создаём игрока и регистрируем его как IMovable
-                Player player = Container.InstantiatePrefabForComponent<Player>(_playerPrefab, _playerSpawnPoint.position, Quaternion.identity, null);
-                player.gameObject.SetActive(true);
-                Container.BindInterfacesAndSelfTo<Player>().FromInstance(player).AsSingle();
+                InitInput();
+                InitPlayer();
+                InitCamera();
+        }
 
+        private void InitInput()
+        {
+                Container.BindInterfacesAndSelfTo<DesktopInput>().AsSingle();
+        }
+        
+        private void InitPlayer()
+        {
+                Container.Bind<PlayerConfig>().FromInstance(playerConfig).AsSingle();
+                
+                _player = Container.InstantiatePrefabForComponent<Player>(playerPrefab,
+                        playerSpawnPoint.position, Quaternion.identity, null);
+                Container.BindInterfacesAndSelfTo<Player>().FromInstance(_player).AsSingle().NonLazy();
+                
                 Container.Bind<MovementHandler>().AsSingle().NonLazy();
-                // Теперь можно привязывать AttackHandler
                 Container.BindInterfacesAndSelfTo<AttackController>()
                         //.FromComponentOn(player.gameObject)
                         //.FromComponentOnRoot() // Берёт компонент с корневого объекта (т.е. там же, где Player)
-                        .FromNewComponentOn(player.gameObject)
+                        .FromNewComponentOn(_player.gameObject)
                         .AsSingle()
                         //.WithArguments(Container.Resolve<IMovable>())
                         .NonLazy();
-
+        }
+        
+        private void InitCamera()
+        {
+                var camera = Container.InstantiatePrefabForComponent<SettingsCamera>(cameraPrefab,
+                        Vector3.zero, Quaternion.identity, null);
+                Container.BindInterfacesAndSelfTo<SettingsCamera>().FromInstance(camera).AsSingle();
         }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using Zenject;
@@ -35,18 +36,15 @@ public class AttackController : MonoBehaviour
         float timer = 0;
         while (timer <= _attackable.AttackDuration)
         {
-            var playerPosition = _movable.Position;
+            var playerPosition = _movable.Transform;
         
             Vector3 boxCenter = CorrectBoxCenter();
             Collider[] colliders = 
-                Physics.OverlapBox(playerPosition + boxCenter, _attackable.BoxSize / 2);
+                Physics.OverlapBox(playerPosition.position + boxCenter, _attackable.BoxSize / 2);
 
             foreach (var collider in colliders)
             {
-                /*if (collider.CompareTag("Enemy"))
-                {
-                    throw new NotImplementedException("Атака еще не реализована");
-                }*/
+                throw new NotImplementedException("Атака еще не реализована");
             }
             
             yield return null;

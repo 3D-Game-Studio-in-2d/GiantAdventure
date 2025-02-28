@@ -152,10 +152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63944881feb0fa54091a35b1ec0e40e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerPrefab: {fileID: 7276607121213728588, guid: a059aacfbbce5544b8d69738c55b5004,
+  playerPrefab: {fileID: 7276607121213728588, guid: a059aacfbbce5544b8d69738c55b5004,
     type: 3}
-  _playerSpawnPoint: {fileID: 2016883157}
-  _playerConfig: {fileID: 11400000, guid: 9ecfecee83f8ff14f9003a9c470d659b, type: 2}
+  playerSpawnPoint: {fileID: 2016883157}
+  playerConfig: {fileID: 11400000, guid: 9ecfecee83f8ff14f9003a9c470d659b, type: 2}
+  cameraPrefab: {fileID: 3251671298318196853, guid: ae31961693235694c88b3751e00b2736,
+    type: 3}
 --- !u!114 &1042055691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,6 +322,7 @@ GameObject:
   - component: {fileID: 1386244536}
   - component: {fileID: 1386244535}
   - component: {fileID: 1386244538}
+  - component: {fileID: 1386244539}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -368,7 +371,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 60.000004
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -395,7 +398,7 @@ Transform:
   m_GameObject: {fileID: 1386244534}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.45, z: -10}
+  m_LocalPosition: {x: 0, y: 3.3, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -445,6 +448,40 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &1386244539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386244534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowDebugText: 0
+  m_ShowCameraFrustum: 1
+  m_IgnoreTimeScale: 0
+  m_WorldUpOverride: {fileID: 0}
+  m_UpdateMethod: 2
+  m_BlendUpdateMethod: 1
+  m_DefaultBlend:
+    m_Style: 1
+    m_Time: 2
+    m_CustomCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  m_CustomBlends: {fileID: 0}
+  m_CameraCutEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_CameraActivatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1925699780
 GameObject:
   m_ObjectHideFlags: 0
