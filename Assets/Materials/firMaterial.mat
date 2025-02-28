@@ -52,13 +52,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _1: -0
-    - _2: 0.37
+    - _2: 0.49
     - _QueueControl: 0
     - _QueueOffset: 0
     - _lighting_cutoff: 0.01
     - _shadow_brigthness: 0.43
-    - _shadow_brigthness_1: 0.36
-    - _shadow_brigthness_2: 0.49
+    - _shadow_brigthness_1: 0.46
+    - _shadow_brigthness_2: 0.56
     m_Colors:
     - _Color: {r: 0.19569243, g: 0.4339623, b: 0.33607075, a: 0}
   m_BuildTextureStacks: []
