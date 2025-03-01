@@ -5,7 +5,6 @@ using Zenject;
 [RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviour, IMovable, IGravitable, IJump, IRoll, IAttackable
 {
-
     [field: Header("Move Stats")]
     public CharacterController CharacterController { get; private set; }
     public Transform Transform { get; set; }
@@ -35,6 +34,9 @@ public class Player : MonoBehaviour, IMovable, IGravitable, IJump, IRoll, IAttac
     [field: Header("Radius Attack Stats")]
     public Vector3 BoxCenter { get; set; }
     public Vector3 BoxSize { get; set; }
+    [field: Header("Radius Attack Stats")]
+    public Health Health { get; set; }
+        
 
     [Inject]
     public void Initialize(PlayerConfig config)
@@ -61,6 +63,8 @@ public class Player : MonoBehaviour, IMovable, IGravitable, IJump, IRoll, IAttac
         BoxCenter = config.BoxCenter;
         BoxSize = config.BoxSize;
         
+        InitializeHealth(config.Health);
+        
         Debug.Log("Игрок создан");
     }
     
@@ -72,5 +76,24 @@ public class Player : MonoBehaviour, IMovable, IGravitable, IJump, IRoll, IAttac
     private void Update()
     {
         Transform = transform;
+    }
+
+    private void InitializeHealth(int health)
+    {
+        Health = new Health(health);
+        Health.OnDeath += OnDied;
+    }
+    
+    private void OnDied()
+    {
+        // Instantiate(частицы, transform.position, Quat);
+        // PlayAnim();
+        Destroy(gameObject);
+    }
+    
+    [ContextMenu("Тестирование Получения Урона 10")]
+    private void ТестированиеПолученияУрона()
+    {
+        Health.TakeDamage(10);
     }
 }
