@@ -5164,9 +5164,9 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -5185,6 +5185,9 @@ MonoBehaviour:
   <MaxHealth>k__BackingField: 10
   <Width>k__BackingField: 10
   <Height>k__BackingField: 2
+  <AttackDamage>k__BackingField: 5
+  <AttackCooldown>k__BackingField: 1
+  isReadyToAttack: 0
   <Speed>k__BackingField: 5
   moveDuration: 2
   stopDuration: 2

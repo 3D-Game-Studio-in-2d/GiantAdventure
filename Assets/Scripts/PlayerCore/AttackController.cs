@@ -44,7 +44,7 @@ public class AttackController : MonoBehaviour
 
             foreach (var collider in colliders)
             {
-                throw new NotImplementedException("Атака еще не реализована");
+                Debug.unityLogger.Log("Аттака не реализована");
             }
             
             yield return null;

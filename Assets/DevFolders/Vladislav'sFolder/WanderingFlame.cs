@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using Random = UnityEngine.Random;
 
 public class WanderingFlame : MonoBehaviour
@@ -15,6 +16,14 @@ public class WanderingFlame : MonoBehaviour
     private float Width { get; set; }
     [field: SerializeField]
     private float Height { get; set; }
+
+    [field: Header("Attack stats")]
+    [field: SerializeField]
+    private int AttackDamage { get; set; } = 5;
+    [field: SerializeField]
+    private float AttackCooldown { get; set; } = 1f;
+    [field: SerializeField]
+    private bool isReadyToAttack;
     
     [field: Header("Movement behavior")]
     [field: SerializeField]
@@ -35,6 +44,7 @@ public class WanderingFlame : MonoBehaviour
         ChangeDestinationPoint();
         isMoving = true;
         startTime = Time.time; // Устанавливаем время начала движения
+        isReadyToAttack = true;
         
         Health = new Health(MaxHealth);
         Health.OnDeath += OnDeath;
@@ -98,6 +108,25 @@ public class WanderingFlame : MonoBehaviour
         Gizmos.color = Color.red;
         
         Gizmos.DrawWireSphere(destinationPoint, 0.1f);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") && isReadyToAttack)
+        {
+            if (other.TryGetComponent<Player>(out Player player)) // Проверяем, есть ли у объекта компонент Player
+            {
+                player.Health.TakeDamage(AttackDamage); // Доступ к полю Health
+                isReadyToAttack = false;
+                StartCoroutine(AttackCooldownTimer(AttackCooldown));
+            }
+        }
+    }
+
+    private IEnumerator AttackCooldownTimer(float cooldownTime)
+    {
+        yield return new WaitForSeconds(cooldownTime);
+        isReadyToAttack = true;
     }
 
     [ContextMenu("Тестирование Получения Урона 10")]
