@@ -4,37 +4,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class WanderingFlame : MonoBehaviour, IHealth
+public class WanderingFlame : MonoBehaviour
 {
-    [field: Header("Health Stats")]
-    public float Health { get; set;  }
-    [field: SerializeField]
-    public float MaxHealth { get; set;  }
-    public event Action OnDeath;
-    public void TakeDamage(float damage)
-    {
-        throw new NotImplementedException();
-    }
-    public void Heal(float heal)
-    {
-        throw new NotImplementedException();
-    }
+    [field: Header("Health")]
+    [field: SerializeField] public int MaxHealth { get; set; } = 20;
+    public Health Health { get; set; }
     
     [field: Header("Range Stats")]
     [field: SerializeField]
     private float Width { get; set; }
     [field: SerializeField]
     private float Height { get; set; }
-
-    private Vector3 destinationPoint;
-    private Vector3 centerPoint;
+    
+    [field: Header("Movement behavior")]
     [field: SerializeField]
     private float Speed { get; set; }
-    private bool isMoving = false;  // Индикатор движения
-    [SerializeField] private float moveDuration = 2f; // Время движения к цели
-    [SerializeField] private float stopDuration = 1f; // Время остановки перед следующим рывком
+    [SerializeField] private float moveDuration = 2f;
+    [SerializeField] private float stopDuration = 1f;
+    
     private float startTime;
+    private bool isMoving = false;  // Индикатор движения
+    
     private Vector3 startPoint;
+    private Vector3 destinationPoint;
+    private Vector3 centerPoint;
     
     private void Start()
     {
@@ -42,6 +35,9 @@ public class WanderingFlame : MonoBehaviour, IHealth
         ChangeDestinationPoint();
         isMoving = true;
         startTime = Time.time; // Устанавливаем время начала движения
+        
+        Health = new Health(MaxHealth);
+        Health.OnDeath += OnDeath;
     }
 
     private void Update()
@@ -77,8 +73,11 @@ public class WanderingFlame : MonoBehaviour, IHealth
         startPoint = transform.position;
         destinationPoint = centerPoint + new Vector3(Random.Range(-Width / 2, Width / 2), Random.Range(-Height / 2, Height / 2), 0);
     }
-    
-    
+
+    public void OnDeath()
+    {
+        Destroy(gameObject);
+    }
     
     private void OnDrawGizmos()
     {
@@ -101,4 +100,9 @@ public class WanderingFlame : MonoBehaviour, IHealth
         Gizmos.DrawWireSphere(destinationPoint, 0.1f);
     }
 
+    [ContextMenu("Тестирование Получения Урона 10")]
+    private void ТестированиеПолученияУрона()
+    {
+        Health.TakeDamage(10);
+    }
 }
