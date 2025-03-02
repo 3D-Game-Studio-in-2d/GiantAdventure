@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6707713014512806891}
   - component: {fileID: 5140176049882315708}
   - component: {fileID: 6440153845762473657}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5076,7 +5076,7 @@ GameObject:
   - component: {fileID: 8312320608925708496}
   - component: {fileID: 4493222967293355247}
   - component: {fileID: 2849531193465262036}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Flame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5182,12 +5182,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dbeb4464200d3540b6d6fc7a4b80ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isReadyToAttack: 0
   <MaxHealth>k__BackingField: 10
   <Width>k__BackingField: 10
   <Height>k__BackingField: 2
   <AttackDamage>k__BackingField: 5
   <AttackCooldown>k__BackingField: 1
-  isReadyToAttack: 0
   <Speed>k__BackingField: 5
   moveDuration: 2
   stopDuration: 2
@@ -5200,7 +5200,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8550945410946698170}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WanderingFlame
   m_TagString: Untagged
   m_Icon: {fileID: 0}

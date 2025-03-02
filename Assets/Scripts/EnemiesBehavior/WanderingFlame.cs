@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.TextCore.Text;
 using Random = UnityEngine.Random;
 
-public class WanderingFlame : MonoBehaviour
+public class WanderingFlame : Enemy
 {
     [field: Header("Health")]
     [field: SerializeField] public int MaxHealth { get; set; } = 20;
@@ -22,8 +22,6 @@ public class WanderingFlame : MonoBehaviour
     private int AttackDamage { get; set; } = 5;
     [field: SerializeField]
     private float AttackCooldown { get; set; } = 1f;
-    [field: SerializeField]
-    private bool isReadyToAttack;
     
     [field: Header("Movement behavior")]
     [field: SerializeField]
@@ -70,7 +68,7 @@ public class WanderingFlame : MonoBehaviour
     private IEnumerator WaitBeforeNextMove()
     {
         // Останавливаемся на некоторое время перед новым движением
-        yield return new WaitForSeconds(stopDuration);
+        yield return new WaitForSeconds(stopDuration + Random.Range(-0.2f, 0.2f));
         ChangeDestinationPoint();
         float journeyLength = Vector3.Distance(startPoint, destinationPoint);
         moveDuration = 1 / Speed * journeyLength;
@@ -84,7 +82,7 @@ public class WanderingFlame : MonoBehaviour
         destinationPoint = centerPoint + new Vector3(Random.Range(-Width / 2, Width / 2), Random.Range(-Height / 2, Height / 2), 0);
     }
 
-    public void OnDeath()
+    public override void OnDeath()
     {
         Destroy(gameObject);
     }
@@ -110,23 +108,14 @@ public class WanderingFlame : MonoBehaviour
         Gizmos.DrawWireSphere(destinationPoint, 0.1f);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player") && isReadyToAttack)
+        if (isReadyToAttack && other.transform.parent.TryGetComponent(out Player player)) // Проверяем, есть ли у объекта компонент Player
         {
-            if (other.TryGetComponent<Player>(out Player player)) // Проверяем, есть ли у объекта компонент Player
-            {
-                player.Health.TakeDamage(AttackDamage); // Доступ к полю Health
-                isReadyToAttack = false;
-                StartCoroutine(AttackCooldownTimer(AttackCooldown));
-            }
+            player.Health.TakeDamage(AttackDamage); // Доступ к полю Health
+            isReadyToAttack = false;
+            StartCoroutine(AttackCooldownTimer(AttackCooldown));
         }
-    }
-
-    private IEnumerator AttackCooldownTimer(float cooldownTime)
-    {
-        yield return new WaitForSeconds(cooldownTime);
-        isReadyToAttack = true;
     }
 
     [ContextMenu("Тестирование Получения Урона 10")]
