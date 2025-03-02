@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5a9f2c43d860c8498b6f9e7ebe551f4, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
-  <Speed>k__BackingField: 4.9
-  <Gravity>k__BackingField: -31.8
-  <JumpForce>k__BackingField: 2.1
+  <Speed>k__BackingField: 8
+  <Gravity>k__BackingField: -30
+  <JumpForce>k__BackingField: 3
   <RollDuration>k__BackingField: 0.16
   <RollSpeed>k__BackingField: 20.7
   <AttackDuration>k__BackingField: 0.3

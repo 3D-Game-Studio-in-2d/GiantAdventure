@@ -2,23 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using Random = UnityEngine.Random;
 
-public class WanderingFlame : MonoBehaviour, IHealth
+public class WanderingFlame : Enemy
 {
-    [field: Header("Health Stats")]
-    public float Health { get; set;  }
-    [field: SerializeField]
-    public float MaxHealth { get; set;  }
-    public event Action OnDeath;
-    public void TakeDamage(float damage)
-    {
-        throw new NotImplementedException();
-    }
-    public void Heal(float heal)
-    {
-        throw new NotImplementedException();
-    }
+    [field: Header("Health")]
+    [field: SerializeField] public int MaxHealth { get; set; } = 20;
+    public Health Health { get; set; }
     
     [field: Header("Range Stats")]
     [field: SerializeField]
@@ -26,15 +17,24 @@ public class WanderingFlame : MonoBehaviour, IHealth
     [field: SerializeField]
     private float Height { get; set; }
 
-    private Vector3 destinationPoint;
-    private Vector3 centerPoint;
+    [field: Header("Attack stats")]
+    [field: SerializeField]
+    private int AttackDamage { get; set; } = 5;
+    [field: SerializeField]
+    private float AttackCooldown { get; set; } = 1f;
+    
+    [field: Header("Movement behavior")]
     [field: SerializeField]
     private float Speed { get; set; }
-    private bool isMoving = false;  // Индикатор движения
-    [SerializeField] private float moveDuration = 2f; // Время движения к цели
-    [SerializeField] private float stopDuration = 1f; // Время остановки перед следующим рывком
+    [SerializeField] private float moveDuration = 2f;
+    [SerializeField] private float stopDuration = 1f;
+    
     private float startTime;
+    private bool isMoving = false;  // Индикатор движения
+    
     private Vector3 startPoint;
+    private Vector3 destinationPoint;
+    private Vector3 centerPoint;
     
     private void Start()
     {
@@ -42,6 +42,10 @@ public class WanderingFlame : MonoBehaviour, IHealth
         ChangeDestinationPoint();
         isMoving = true;
         startTime = Time.time; // Устанавливаем время начала движения
+        isReadyToAttack = true;
+        
+        Health = new Health(MaxHealth);
+        Health.OnDeath += OnDeath;
     }
 
     private void Update()
@@ -64,7 +68,7 @@ public class WanderingFlame : MonoBehaviour, IHealth
     private IEnumerator WaitBeforeNextMove()
     {
         // Останавливаемся на некоторое время перед новым движением
-        yield return new WaitForSeconds(stopDuration);
+        yield return new WaitForSeconds(stopDuration + Random.Range(-0.2f, 0.2f));
         ChangeDestinationPoint();
         float journeyLength = Vector3.Distance(startPoint, destinationPoint);
         moveDuration = 1 / Speed * journeyLength;
@@ -77,8 +81,11 @@ public class WanderingFlame : MonoBehaviour, IHealth
         startPoint = transform.position;
         destinationPoint = centerPoint + new Vector3(Random.Range(-Width / 2, Width / 2), Random.Range(-Height / 2, Height / 2), 0);
     }
-    
-    
+
+    public override void OnDeath()
+    {
+        Destroy(gameObject);
+    }
     
     private void OnDrawGizmos()
     {
@@ -101,4 +108,19 @@ public class WanderingFlame : MonoBehaviour, IHealth
         Gizmos.DrawWireSphere(destinationPoint, 0.1f);
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (isReadyToAttack && other.transform.parent.TryGetComponent(out Player player)) // Проверяем, есть ли у объекта компонент Player
+        {
+            player.Health.TakeDamage(AttackDamage); // Доступ к полю Health
+            isReadyToAttack = false;
+            StartCoroutine(AttackCooldownTimer(AttackCooldown));
+        }
+    }
+
+    [ContextMenu("Тестирование Получения Урона 10")]
+    private void ТестированиеПолученияУрона()
+    {
+        Health.TakeDamage(10);
+    }
 }
