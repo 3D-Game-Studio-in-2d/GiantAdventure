@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 107784488}
   - component: {fileID: 107784487}
   - component: {fileID: 107784490}
+  - component: {fileID: 107784491}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -259,6 +260,40 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &107784491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107784486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowDebugText: 0
+  m_ShowCameraFrustum: 1
+  m_IgnoreTimeScale: 0
+  m_WorldUpOverride: {fileID: 0}
+  m_UpdateMethod: 2
+  m_BlendUpdateMethod: 1
+  m_DefaultBlend:
+    m_Style: 1
+    m_Time: 2
+    m_CustomCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  m_CustomBlends: {fileID: 0}
+  m_CameraCutEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_CameraActivatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &363227259
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -267,6 +302,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1560617251116978909, guid: aad1cca5ece89da47a168c477bf859a6,
+        type: 3}
+      propertyPath: cameraPrefab
+      value: 
+      objectReference: {fileID: 3251671298318196853, guid: ae31961693235694c88b3751e00b2736,
+        type: 3}
+    - target: {fileID: 1560617251116978909, guid: aad1cca5ece89da47a168c477bf859a6,
+        type: 3}
+      propertyPath: playerConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 9ecfecee83f8ff14f9003a9c470d659b,
+        type: 2}
+    - target: {fileID: 1560617251116978909, guid: aad1cca5ece89da47a168c477bf859a6,
+        type: 3}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 7276607121213728588, guid: a059aacfbbce5544b8d69738c55b5004,
+        type: 3}
+    - target: {fileID: 1560617251116978909, guid: aad1cca5ece89da47a168c477bf859a6,
+        type: 3}
+      propertyPath: playerSpawnPoint
+      value: 
+      objectReference: {fileID: 1360258424}
     - target: {fileID: 1560617251116978909, guid: aad1cca5ece89da47a168c477bf859a6,
         type: 3}
       propertyPath: _playerSpawnPoint

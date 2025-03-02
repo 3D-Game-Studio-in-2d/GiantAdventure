@@ -1,5 +1,6 @@
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Serialization;
 using Zenject;
 
@@ -40,6 +41,12 @@ public class GameplaySceneInstaller : MonoInstaller
                         .AsSingle()
                         //.WithArguments(Container.Resolve<IMovable>())
                         .NonLazy();
+                
+                // Передать зависимость Health в UI
+                Container.Bind<PlayerHealthView>().FromComponentsInHierarchy().AsSingle();
+                var healthBar = Container.Resolve<PlayerHealthView>();
+                healthBar.Initialize(_player.Health);
+                
         }
         
         private void InitCamera()
