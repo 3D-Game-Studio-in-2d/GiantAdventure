@@ -36,7 +36,6 @@ public class Player : MonoBehaviour, IMovable, IGravitable, IJump, IRoll, IAttac
     public Vector3 BoxSize { get; set; }
     [field: Header("Radius Attack Stats")]
     public Health Health { get; set; }
-        
 
     [Inject]
     public void Initialize(PlayerConfig config)
