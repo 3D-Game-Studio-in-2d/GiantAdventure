@@ -1,12 +1,9 @@
 using System.Collections;
 using UnityEngine;
+using Zenject;
 
 public class SlimeBehavior : Enemy, IJump, IGravitable, IMovable
 {
-    [field: Header("Health")]
-    [field: SerializeField] public int MaxHealth { get; set; } = 20;
-    public Health Health { get; set; }
-
     [field: Header("Range Stats")]
     [field: SerializeField] private float radiusOfVision = 5f;
 
@@ -29,13 +26,16 @@ public class SlimeBehavior : Enemy, IJump, IGravitable, IMovable
     private bool isReadyToJump;
     private int sideOfJump; // 1 - вправо, -1 - влево
 
+    [Inject]
+    public void Initialize(SlimeConfig config)
+    {
+        Health = new Health(config.Health);
+        Health.OnDeath += OnDeath;
+    }
+    
     private void Start()
     {
         CharacterController = GetComponent<CharacterController>();
-
-        // Инициализация здоровья
-        Health = new Health(MaxHealth);
-        Health.OnDeath += OnDeath;
 
         isReadyToAttack = true;
         isReadyToJump = false;

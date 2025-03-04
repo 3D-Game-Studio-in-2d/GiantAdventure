@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerConfig", menuName = "Configs/PlayerConfig")]
+    [CreateAssetMenu(fileName = "PlayerConfig", menuName = "Configs/PlayerConfig")]
 public class PlayerConfig : ScriptableObject
 {
     [field: Header("Move Stats")]
@@ -20,6 +20,8 @@ public class PlayerConfig : ScriptableObject
     public float RollDuration { get; set; }= 1f;
     [field: SerializeField, Range(0, 60)] 
     public float RollSpeed { get; set; }= 10f;
+    [field: SerializeField, Range(0, 10)] 
+    public float RollCooldown { get; set; }
     
     [field: Space(50)]
     [field: Header("Attack Stats")]

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6529572729811513240}
   - component: {fileID: 4013235268224852314}
   - component: {fileID: 1560617251116978909}
+  - component: {fileID: -2973129027588454964}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -48,6 +49,7 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 1560617251116978909}
+  - {fileID: -2973129027588454964}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -83,3 +85,18 @@ MonoBehaviour:
   playerConfig: {fileID: 11400000, guid: 9ecfecee83f8ff14f9003a9c470d659b, type: 2}
   cameraPrefab: {fileID: 3251671298318196853, guid: ae31961693235694c88b3751e00b2736,
     type: 3}
+--- !u!114 &-2973129027588454964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4125075224079357797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dc304927b774214abda0f30cf381f83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  config: {fileID: 11400000, guid: b26d04201ccb58b43ab7caeffae833f7, type: 2}
+  wanderingFlameConfig: {fileID: 11400000, guid: e19bf54d312bcb34dbf02e5f8381ff15,
+    type: 2}

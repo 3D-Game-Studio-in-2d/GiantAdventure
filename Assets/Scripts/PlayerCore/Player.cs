@@ -5,6 +5,8 @@ using Zenject;
 [RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviour, IMovable, IGravitable, IJump, IRoll
 {
+    private IRoll rollImplementation;
+
     [field: Header("Move Stats")]
     public CharacterController CharacterController { get; private set; }
     public Transform Transform { get; set; }
@@ -22,6 +24,8 @@ public class Player : MonoBehaviour, IMovable, IGravitable, IJump, IRoll
     [field: Header("Roll Stats")]
     public float RollSpeed { get; set; } = 10f;
     public float RollDuration { get; set; } = 1f;
+    public float RollCooldown { get; set; } = 1f;
+
     public bool IsRolling { get; set; } = false;
 
     [field: Header("Attack Stats")]
@@ -45,6 +49,7 @@ public class Player : MonoBehaviour, IMovable, IGravitable, IJump, IRoll
         // Roll
         RollSpeed = config.RollSpeed;
         RollDuration = config.RollDuration;
+        RollCooldown = config.RollCooldown;
         
         AttackPlayerStats = stats;
         

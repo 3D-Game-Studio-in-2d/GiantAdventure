@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -15,7 +16,8 @@ public class AttackController : MonoBehaviour
     private float _comboTimer = 0f;
     private bool _canContinueCombo = false;
     private bool _isAttacking = false;
-    
+
+    private List<Entity> _attackedEntities = new List<Entity>();
     [Inject]
     public void Initialize(IInput input, IMovable movable, AttackPlayerStats attackPlayerStats)
     {
@@ -89,7 +91,8 @@ public class AttackController : MonoBehaviour
         }
 
         _movable.Speed = _previousSpeed;
-
+        _attackedEntities.Clear();
+        
         if (_canContinueCombo && _currentComboIndex < _comboStrikes.Length - 1)
         {
             _currentComboIndex++;
@@ -123,18 +126,21 @@ public class AttackController : MonoBehaviour
             return;
         }
 
-        if (!other.TryGetComponent(out Entity enemy))
+        if (!other.TryGetComponent(out Entity entity))
         {
-            Debug.LogWarning($"⚠️ Объект {other.name} не имеет компонента Entity.");
             return;
         }
 
-        if (enemy.Health == null)
+        if (entity.Health == null)
         {
-            Debug.LogError($"❌ Ошибка! У объекта {enemy.name} отсутствует компонент Health.");
+            Debug.LogError($"❌ Ошибка! У объекта {entity.name} отсутствует компонент Health.");
             return;
         }
         
-        enemy.Health.TakeDamage(_comboStrikes[_currentComboIndex].Damage);
+        if (!_attackedEntities.Contains(entity))
+        {
+            entity.Health.TakeDamage(_comboStrikes[_currentComboIndex].Damage);
+            _attackedEntities.Add(entity);
+        }
     }
 }
