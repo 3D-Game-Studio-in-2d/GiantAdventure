@@ -3,8 +3,10 @@ using UnityEngine;
 using Zenject;
 
 [RequireComponent(typeof(CharacterController))]
-public class Player : MonoBehaviour, IMovable, IGravitable, IJump, IRoll, IAttackable
+public class Player : MonoBehaviour, IMovable, IGravitable, IJump, IRoll
 {
+    private IRoll rollImplementation;
+
     [field: Header("Move Stats")]
     public CharacterController CharacterController { get; private set; }
     public Transform Transform { get; set; }
@@ -22,23 +24,18 @@ public class Player : MonoBehaviour, IMovable, IGravitable, IJump, IRoll, IAttac
     [field: Header("Roll Stats")]
     public float RollSpeed { get; set; } = 10f;
     public float RollDuration { get; set; } = 1f;
+    public float RollCooldown { get; set; } = 1f;
+
     public bool IsRolling { get; set; } = false;
 
     [field: Header("Attack Stats")]
-    public float Damage { get; set; } = 1f;
-
-    public float AttackDuration { get; set; } = 0.3f;
-    public float AttackSlowdown { get; set; } = 0.5f;
-    public bool IsAttacking { get; set; } = false;
-
-    [field: Header("Radius Attack Stats")]
-    public Vector3 BoxCenter { get; set; }
-    public Vector3 BoxSize { get; set; }
-    [field: Header("Radius Attack Stats")]
-    public Health Health { get; set; }
+    public AttackPlayerStats AttackPlayerStats{ get; private set; }
+    
+    [field: Header("Health Stats")]
+    public Health Health { get; private set; }
 
     [Inject]
-    public void Initialize(PlayerConfig config)
+    public void Initialize(PlayerConfig config, AttackPlayerStats stats)
     {
         // Movable
         Speed = config.Speed;
@@ -52,15 +49,9 @@ public class Player : MonoBehaviour, IMovable, IGravitable, IJump, IRoll, IAttac
         // Roll
         RollSpeed = config.RollSpeed;
         RollDuration = config.RollDuration;
+        RollCooldown = config.RollCooldown;
         
-        // Attack
-        Damage = config.Damage;
-        AttackDuration = config.AttackDuration;
-        AttackSlowdown = config.AttackSlowdown;
-        
-        // Radius Attack
-        BoxCenter = config.BoxCenter;
-        BoxSize = config.BoxSize;
+        AttackPlayerStats = stats;
         
         InitializeHealth(config.Health);
         

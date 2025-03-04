@@ -12,6 +12,7 @@ public class MovementHandler
         private IJump _jump;
         private IRoll _roll;
 
+        private float _rollTimer = 0f;
         public MovementHandler(IInput input ,IMovable movable, IGravitable gravitable, IJump jump, IRoll roll)
         {
                 _input = input;
@@ -33,6 +34,8 @@ public class MovementHandler
                 UseGravity();
                 FaceVector(moveInput);
 
+                _rollTimer += Time.deltaTime;
+                
                 if (!_roll.IsRolling)
                 {    
                         Vector3 movement = new Vector3(moveInput.x, 0, moveInput.z) * _movable.Speed;
@@ -76,7 +79,7 @@ public class MovementHandler
 
         private void OnRoll()
         {
-                if (_gravitable.IsGrounded && !_roll.IsRolling)
+                if (_gravitable.IsGrounded && !_roll.IsRolling && _rollTimer >= _roll.RollCooldown)
                 {
                         _roll.IsRolling = true;
 
@@ -91,6 +94,8 @@ public class MovementHandler
                         _movable.Velocity = rollDirection * _roll.RollSpeed;
 
                         Task.Run(async () => await EndRoll());
+
+                        _rollTimer = 0f;
                 }
         }
         

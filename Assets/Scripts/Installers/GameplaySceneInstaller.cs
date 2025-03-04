@@ -28,10 +28,11 @@ public class GameplaySceneInstaller : MonoInstaller
         private void InitPlayer()
         {
                 Container.Bind<PlayerConfig>().FromInstance(playerConfig).AsSingle();
+                Container.BindInterfacesAndSelfTo<AttackPlayerStats>().AsSingle();
                 
                 _player = Container.InstantiatePrefabForComponent<Player>(playerPrefab,
                         playerSpawnPoint.position, Quaternion.identity, null);
-                Container.BindInterfacesAndSelfTo<Player>().FromInstance(_player).AsSingle().NonLazy();
+                Container.BindInterfacesAndSelfTo<Player>().FromInstance(_player).AsSingle();
                 
                 Container.Bind<MovementHandler>().AsSingle().NonLazy();
                 Container.BindInterfacesAndSelfTo<AttackController>()
