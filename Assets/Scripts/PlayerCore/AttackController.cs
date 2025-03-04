@@ -81,7 +81,7 @@ public class AttackController : MonoBehaviour
 
             foreach (var collider in colliders)
             {
-                //throw new NotImplementedException();
+                CurrentCollision(collider);
             }
 
             yield return null;
@@ -113,5 +113,28 @@ public class AttackController : MonoBehaviour
         Gizmos.color = Color.Lerp(Color.blue, Color.red, (float)_currentComboIndex / (_comboStrikes.Length - 1));
         Vector3 boxCenter = CorrectBoxCenter(_comboStrikes[_currentComboIndex].BoxCenter);
         Gizmos.DrawWireCube(transform.position + boxCenter, _comboStrikes[_currentComboIndex].BoxSize);
+    }
+
+    private void CurrentCollision(Collider other)
+    {
+        if (other == null)
+        {
+            Debug.LogError("❌ Ошибка! Переданный `Collider other` = null");
+            return;
+        }
+
+        if (!other.TryGetComponent(out Entity enemy))
+        {
+            Debug.LogWarning($"⚠️ Объект {other.name} не имеет компонента Entity.");
+            return;
+        }
+
+        if (enemy.Health == null)
+        {
+            Debug.LogError($"❌ Ошибка! У объекта {enemy.name} отсутствует компонент Health.");
+            return;
+        }
+        
+        enemy.Health.TakeDamage(_comboStrikes[_currentComboIndex].Damage);
     }
 }

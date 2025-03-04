@@ -12,14 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5a9f2c43d860c8498b6f9e7ebe551f4, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
-  <Speed>k__BackingField: 4.9
-  <Gravity>k__BackingField: -31.8
-  <JumpForce>k__BackingField: 2.1
+  <Speed>k__BackingField: 8
+  <Gravity>k__BackingField: -30
+  <JumpForce>k__BackingField: 3
   <RollDuration>k__BackingField: 0.16
   <RollSpeed>k__BackingField: 20.7
-  <AttackDuration>k__BackingField: 0.3
   <AttackSlowdown>k__BackingField: 0.818
-  <Damage>k__BackingField: 3
-  <BoxCenter>k__BackingField: {x: 1, y: 0, z: 0}
-  <BoxSize>k__BackingField: {x: 3, y: 3, z: 3}
+  <FirstStrikeDamage>k__BackingField: 5
+  <FirstStrikeAttackDuration>k__BackingField: 0
+  <FirstStrikeBoxSize>k__BackingField: {x: 2, y: 2, z: 2}
+  <FirstStrikeBoxCenter>k__BackingField: {x: 1, y: 0, z: 0}
+  <SecondStrikeDamage>k__BackingField: 10
+  <SecondStrikeAttackDuration>k__BackingField: 0
+  <SecondStrikeBoxSize>k__BackingField: {x: 4, y: 2, z: 2}
+  <SecondStrikeBoxCenter>k__BackingField: {x: 0, y: 0, z: 0}
+  <ThirdStrikeDamage>k__BackingField: 20
+  <ThirdStrikeAttackDuration>k__BackingField: 0
+  <ThirdStrikeBoxSize>k__BackingField: {x: 4, y: 2, z: 2}
+  <ThirdStrikeBoxCenter>k__BackingField: {x: 2, y: 0, z: 0}
   <Health>k__BackingField: 100

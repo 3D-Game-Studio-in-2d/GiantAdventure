@@ -24,9 +24,11 @@ public class Player : MonoBehaviour, IMovable, IGravitable, IJump, IRoll
     public float RollDuration { get; set; } = 1f;
     public bool IsRolling { get; set; } = false;
 
-    public Health Health { get; private set; }
+    [field: Header("Attack Stats")]
     public AttackPlayerStats AttackPlayerStats{ get; private set; }
-        
+    
+    [field: Header("Health Stats")]
+    public Health Health { get; private set; }
 
     [Inject]
     public void Initialize(PlayerConfig config, AttackPlayerStats stats)

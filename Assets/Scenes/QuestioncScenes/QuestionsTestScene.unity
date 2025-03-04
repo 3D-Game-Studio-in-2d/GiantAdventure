@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 23.900024, y: -25.5}
+  m_AnchoredPosition: {x: 23.900146, y: -25.5}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &349856948
@@ -657,13 +657,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1386244534}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.12368808, y: 0.0000010885683, z: -0.000008733335, w: 0.9923212}
   m_LocalPosition: {x: 0, y: 3.3, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 14.21, y: 0, z: -0.001}
 --- !u!114 &1386244538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -742,6 +742,74 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1001 &1594824166
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4149018342605090276, guid: 613a439e70f26d542900506534f39eb1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.1789465
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149018342605090276, guid: 613a439e70f26d542900506534f39eb1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149018342605090276, guid: 613a439e70f26d542900506534f39eb1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.45805836
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149018342605090276, guid: 613a439e70f26d542900506534f39eb1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149018342605090276, guid: 613a439e70f26d542900506534f39eb1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149018342605090276, guid: 613a439e70f26d542900506534f39eb1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149018342605090276, guid: 613a439e70f26d542900506534f39eb1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149018342605090276, guid: 613a439e70f26d542900506534f39eb1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149018342605090276, guid: 613a439e70f26d542900506534f39eb1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149018342605090276, guid: 613a439e70f26d542900506534f39eb1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7982599057917761020, guid: 613a439e70f26d542900506534f39eb1,
+        type: 3}
+      propertyPath: m_Name
+      value: Slime
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 613a439e70f26d542900506534f39eb1, type: 3}
 --- !u!1 &1598015720
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,7 +1011,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 23.900024, y: -25.5}
+  m_AnchoredPosition: {x: 23.900146, y: -25.5}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1950144309
@@ -1027,3 +1095,4 @@ SceneRoots:
   - {fileID: 662725173}
   - {fileID: 1129903421}
   - {fileID: 1598015722}
+  - {fileID: 1594824166}
