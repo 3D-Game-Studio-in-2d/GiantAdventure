@@ -3,14 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
+using Zenject;
 using Random = UnityEngine.Random;
 
 public class WanderingFlame : Enemy
 {
-    [field: Header("Health")]
-    [field: SerializeField] public int MaxHealth { get; set; } = 20;
-    public Health Health { get; set; }
-    
     [field: Header("Range Stats")]
     [field: SerializeField]
     private float Width { get; set; }
@@ -35,6 +32,13 @@ public class WanderingFlame : Enemy
     private Vector3 startPoint;
     private Vector3 destinationPoint;
     private Vector3 centerPoint;
+
+    [Inject]
+    public void Initialize(WanderingFlameConfig config)
+    {
+        Health = new Health(config.Health);
+        Health.OnDeath += OnDeath;
+    }
     
     private void Start()
     {
@@ -44,8 +48,7 @@ public class WanderingFlame : Enemy
         startTime = Time.time; // Устанавливаем время начала движения
         isReadyToAttack = true;
         
-        Health = new Health(MaxHealth);
-        Health.OnDeath += OnDeath;
+        
     }
 
     private void Update()
