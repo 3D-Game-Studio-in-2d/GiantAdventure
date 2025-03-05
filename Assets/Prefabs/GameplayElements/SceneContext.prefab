@@ -100,3 +100,4 @@ MonoBehaviour:
   config: {fileID: 11400000, guid: b26d04201ccb58b43ab7caeffae833f7, type: 2}
   wanderingFlameConfig: {fileID: 11400000, guid: e19bf54d312bcb34dbf02e5f8381ff15,
     type: 2}
+  banditConfig: {fileID: 11400000, guid: 6d84593bbc80402438a3fed799139406, type: 2}

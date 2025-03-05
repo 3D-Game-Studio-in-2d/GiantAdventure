@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b15be7c1dd1e454a800112608fb987c8, type: 3}
+  m_Name: BanditConfig
+  m_EditorClassIdentifier: 
+  <Health>k__BackingField: 20
+  <RadiusOfVision>k__BackingField: 8
+  <BackVision>k__BackingField: 2
+  <WalkStopRange>k__BackingField: 0.2
+  <AttackStopRange>k__BackingField: 1.5
+  <AttackDamage>k__BackingField: 10
+  <AttackCooldown>k__BackingField: 1
+  <AttackRange>k__BackingField: 2
+  <PreAttackDelay>k__BackingField: 0.25
+  <Speed>k__BackingField: 5
+  <WalkSpeed>k__BackingField: 3
+  <StopDurationRange>k__BackingField: {x: 2, y: 4}
+  <Gravity>k__BackingField: 0
