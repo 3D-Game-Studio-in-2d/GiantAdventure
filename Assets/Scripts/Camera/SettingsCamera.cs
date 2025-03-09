@@ -67,7 +67,7 @@ public class SettingsCamera : MonoBehaviour
         transform.rotation = Quaternion.Euler(rotation);
     }
 
-    public void ChangeOffsetOrientation(Vector3 inputVector)
+    private void ChangeOffsetOrientation(Vector3 inputVector)
     {
         _transposer.m_TrackedObjectOffset.x = offset.x * inputVector.x;
     }
