@@ -17,14 +17,14 @@ MonoBehaviour:
   <JumpForce>k__BackingField: 3
   <RollDuration>k__BackingField: 0.16
   <RollSpeed>k__BackingField: 20.7
-  <RollCooldown>k__BackingField: 1.05
-  <AttackSlowdown>k__BackingField: 0.148
+  <RollCooldown>k__BackingField: 0
+  <AttackSlowdown>k__BackingField: 0.818
   <FirstStrikeDamage>k__BackingField: 5
-  <FirstStrikeAttackDuration>k__BackingField: 1.06
+  <FirstStrikeAttackDuration>k__BackingField: 1
   <FirstStrikeBoxSize>k__BackingField: {x: 2, y: 2, z: 2}
   <FirstStrikeBoxCenter>k__BackingField: {x: 1, y: 0, z: 0}
   <SecondStrikeDamage>k__BackingField: 10
-  <SecondStrikeAttackDuration>k__BackingField: 0.78
+  <SecondStrikeAttackDuration>k__BackingField: 1
   <SecondStrikeBoxSize>k__BackingField: {x: 4, y: 2, z: 2}
   <SecondStrikeBoxCenter>k__BackingField: {x: 0, y: 0, z: 0}
   <ThirdStrikeDamage>k__BackingField: 20

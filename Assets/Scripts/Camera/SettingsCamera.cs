@@ -8,13 +8,21 @@ using Zenject;
 public class SettingsCamera : MonoBehaviour
 {
     private CinemachineVirtualCamera _camera;
+    private CinemachineFramingTransposer _transposer;
     private Player _player;
+    private IInput _input;
+
+    [SerializeField] private Vector3 rotation;
+    [SerializeField] private Vector3 offset;
     
     [Inject]
-    public void Initialize(Player player)
+    public void Initialize(Player player, IInput input)
     {
         Debug.Log($"Initializing Camera.");
         _player = player;
+
+        _input = input;
+        _input.ClickMove += ChangeOffsetOrientation;
     }
 
     /*private void Start()
@@ -34,6 +42,7 @@ public class SettingsCamera : MonoBehaviour
     private void OnEnable()
     {
         _camera = GetComponent<CinemachineVirtualCamera>();
+        _transposer = _camera.GetComponentInChildren<CinemachineFramingTransposer>();
 
         if (_player == null)
         {
@@ -50,6 +59,16 @@ public class SettingsCamera : MonoBehaviour
         Debug.Log($"Player is not null, setting camera follow to {_player.transform.position}");
         _camera.Follow = _player.transform;
         
-        //transform.Rotate(15,0,0);
+        RotateCamera();
+    }
+
+    private void RotateCamera()
+    {
+        transform.rotation = Quaternion.Euler(rotation);
+    }
+
+    private void ChangeOffsetOrientation(Vector3 inputVector)
+    {
+        _transposer.m_TrackedObjectOffset.x = offset.x * inputVector.x;
     }
 }
