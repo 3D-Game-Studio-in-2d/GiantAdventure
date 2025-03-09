@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/QuestioncScenes/QuestionsTestScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Max Tinkov/LvlDesingScene 1.unity
+    guid: 4e6e467e1d1621e4fbb8bee3131c5b59
   m_configObjects: {}

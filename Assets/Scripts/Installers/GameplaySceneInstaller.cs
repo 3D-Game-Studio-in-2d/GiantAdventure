@@ -52,6 +52,7 @@ public class GameplaySceneInstaller : MonoInstaller
         
         private void InitCamera()
         {
+                Container.BindInterfacesAndSelfTo<CameraZone>().FromComponentInHierarchy().AsSingle();
                 var camera = Container.InstantiatePrefabForComponent<SettingsCamera>(cameraPrefab,
                         Vector3.zero, Quaternion.identity, null);
                 Container.BindInterfacesAndSelfTo<SettingsCamera>().FromInstance(camera).AsSingle();
