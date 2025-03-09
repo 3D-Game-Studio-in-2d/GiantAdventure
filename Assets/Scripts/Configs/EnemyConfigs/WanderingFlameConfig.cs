@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SlimeConfig", menuName = "Configs/Enemy/WanderingFlameConfig")]
+[CreateAssetMenu(fileName = "WanderingFlameConfig", menuName = "Configs/Enemy/WanderingFlameConfig")]
 public class WanderingFlameConfig : ScriptableObject
 {
     [field: Header("Move Stats")]
