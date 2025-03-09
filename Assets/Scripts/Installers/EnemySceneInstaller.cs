@@ -13,10 +13,5 @@ public class EnemySceneInstaller: MonoInstaller
     {
         Container.Bind<SlimeConfig>().FromInstance(config).AsSingle();
         Container.Bind<WanderingFlameConfig>().FromInstance(wanderingFlameConfig).AsSingle();
-        
-        Container.Bind<SlimeBehavior>().FromComponentsInHierarchy().AsCached();
-        Container.Bind<WanderingFlame>().FromComponentsInHierarchy().AsCached();
     } 
-    
-    
 }
