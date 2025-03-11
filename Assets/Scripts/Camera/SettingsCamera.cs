@@ -58,12 +58,9 @@ public class SettingsCamera : MonoBehaviour
 
         Debug.Log($"Player is not null, setting camera follow to {_player.transform.position}");
         _camera.Follow = _player.transform;
-<<<<<<< HEAD
+
         return false;
-=======
-        
-        RotateCamera();
->>>>>>> edb69ff04049ef122890c2d82f06291d333f19b5
+
     }
 
     private void RotateCamera()
