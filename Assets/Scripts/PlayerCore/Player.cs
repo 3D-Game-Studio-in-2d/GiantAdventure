@@ -3,7 +3,7 @@ using UnityEngine;
 using Zenject;
 
 [RequireComponent(typeof(CharacterController))]
-public class Player : MonoBehaviour, IMovable, IGravitable, IJump, IRoll
+public class Player : MonoBehaviour, IMovable, IGravitable, IJump, IRoll, ISound
 {
     private IRoll rollImplementation;
 
@@ -34,6 +34,8 @@ public class Player : MonoBehaviour, IMovable, IGravitable, IJump, IRoll
     
     [field: Header("Health Stats")]
     public Health Health { get; private set; }
+    
+    public Sound Sound { get; set; }
 
     [Inject]
     public void Initialize(PlayerConfig config, AttackPlayerStats stats)
@@ -56,13 +58,12 @@ public class Player : MonoBehaviour, IMovable, IGravitable, IJump, IRoll
         AttackPlayerStats = stats;
         
         InitializeHealth(config.Health);
-        
-        Debug.Log("Игрок создан");
     }
     
     private void Awake()
     {
         CharacterController = GetComponent<CharacterController>();
+        Sound = GetComponent<Sound>();
     }
 
     private void Update()
@@ -88,4 +89,5 @@ public class Player : MonoBehaviour, IMovable, IGravitable, IJump, IRoll
     {
         Health.TakeDamage(10);
     }
+
 }

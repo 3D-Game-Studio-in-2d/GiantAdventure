@@ -8,11 +8,6 @@ public class DesktopInput : IInput, ITickable
     public event Action ClickJump;
     public event Action ClickRoll;
     public event Action ClickAttack;
-
-    public DesktopInput()
-    {
-        Debug.Log("DesktopInput Создан");
-    }
     
     private void Update()
     {

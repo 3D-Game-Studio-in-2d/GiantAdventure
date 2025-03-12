@@ -20,7 +20,6 @@ public class SettingsCamera : MonoBehaviour
     [Inject]
     public void Initialize(Player player, IInput input,  CameraZone cameraZone)
     {
-        Debug.Log($"Initializing Camera.");
         _player = player;
 
         _input = input;
@@ -56,7 +55,6 @@ public class SettingsCamera : MonoBehaviour
             return true;
         }
 
-        Debug.Log($"Player is not null, setting camera follow to {_player.transform.position}");
         _camera.Follow = _player.transform;
         return false;
     }
