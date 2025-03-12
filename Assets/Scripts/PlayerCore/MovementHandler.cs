@@ -11,20 +11,21 @@ public class MovementHandler
         private IGravitable _gravitable;
         private IJump _jump;
         private IRoll _roll;
+        private ISound _sound;
 
         private float _rollTimer = 0f;
-        public MovementHandler(IInput input ,IMovable movable, IGravitable gravitable, IJump jump, IRoll roll)
+        public MovementHandler(IInput input ,IMovable movable, IGravitable gravitable, IJump jump, IRoll roll, ISound sound)
         {
                 _input = input;
                 _movable = movable;
                 _gravitable = gravitable;
                 _jump = jump;
                 _roll = roll;
+                _sound = sound;
 
                 _input.ClickMove += OnMove;
                 _input.ClickJump += OnJump;
                 _input.ClickRoll += OnRoll;
-                Debug.Log("MovementHandler Создан");
         }
 
         private void OnMove(Vector3 moveInput)
@@ -35,6 +36,8 @@ public class MovementHandler
                 UseGravity();
                 FaceVector(moveInput);
 
+                MoveSound(moveInput);
+                
                 _rollTimer += Time.deltaTime;
                 
                 if (!_roll.IsRolling)
@@ -106,5 +109,11 @@ public class MovementHandler
                 
                 _movable.Velocity = new Vector3(0, _movable.Velocity.y, 0);
                 _roll.IsRolling = false;
+        }
+        
+        private void MoveSound(Vector3 moveInput)
+        {
+                if (Math.Abs(moveInput.x) < 0.1f || !_movable.CharacterController.isGrounded || _sound == null) return;
+                _sound.Sound.PlaySfx("move", allowOverlap: false);
         }
 }
