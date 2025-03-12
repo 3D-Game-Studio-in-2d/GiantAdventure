@@ -29,6 +29,7 @@ public class MovementHandler
 
         private void OnMove(Vector3 moveInput)
         {
+                if (!_movable.CharacterController) return;
                 _gravitable.IsGrounded = _movable.CharacterController.isGrounded;
                 
                 UseGravity();
