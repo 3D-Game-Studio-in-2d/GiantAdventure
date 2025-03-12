@@ -11,6 +11,7 @@ public class Player : MonoBehaviour, IMovable, IGravitable, IJump, IRoll
     public CharacterController CharacterController { get; private set; }
     public Transform Transform { get; set; }
     public float Speed { get; set; } = 5f;
+    public float DefaultSpeed { get; private set; } = 5f;
     public bool FacingRight { get; set; } = true;
     public Vector3 Velocity { get; set; } = Vector3.zero;
 
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour, IMovable, IGravitable, IJump, IRoll
     {
         // Movable
         Speed = config.Speed;
+        DefaultSpeed = Speed;
         
         // Gravity
         Gravity = config.Gravity;

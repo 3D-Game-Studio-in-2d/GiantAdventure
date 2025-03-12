@@ -41,13 +41,15 @@ public class NextLevel : MonoBehaviour
     {
         if (nextLevelOpen && other.TryGetComponent<Player>(out Player player))
         {
-            StartNextLevel();
+            StartCoroutine(StartNextLevel());
         }
     }
 
-    private void StartNextLevel()
+    private IEnumerator StartNextLevel()
     {
         OnLevelTransitionEffects?.Invoke(cooldownForNextLevel);
+        
+        yield return new WaitForSeconds(cooldownForNextLevel);
         
         if (sceneLoadType == SceneLoadType.ByName)
         {
