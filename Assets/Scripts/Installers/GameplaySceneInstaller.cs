@@ -10,6 +10,7 @@ public class GameplaySceneInstaller : MonoInstaller
         [SerializeField] private Transform playerSpawnPoint;
         [SerializeField] private PlayerConfig playerConfig;
         [SerializeField] private SettingsCamera cameraPrefab;
+        [SerializeField] private HealthView enemyHealthViewPrefab;
         
         private Player _player;
         
@@ -18,6 +19,17 @@ public class GameplaySceneInstaller : MonoInstaller
                 InitInput();
                 InitPlayer();
                 InitCamera();
+                InitEnemyHealth();
+        }
+
+        private void InitEnemyHealth()
+        {
+                //var healthViewParent = new GameObject("HealthViews").transform;
+                
+                // Регистрируем фабрику для HealthView
+                Container.BindFactory<HealthView, HealthViewFactory>()
+                        .FromComponentInNewPrefab(enemyHealthViewPrefab)
+                        .UnderTransformGroup("HealthViews");
         }
 
         private void InitInput()

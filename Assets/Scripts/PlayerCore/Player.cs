@@ -12,7 +12,18 @@ public class Player : MonoBehaviour, IMovable, IGravitable, IJump, IRoll, ISound
     public Transform Transform { get; set; }
     public float Speed { get; set; } = 5f;
     public float DefaultSpeed { get; private set; } = 5f;
-    public bool FacingRight { get; set; } = true;
+
+    private bool _facingRight = true;
+    public bool FacingRight
+    {
+        get { return _facingRight; }
+        set
+        {
+            RotatePlayer(value);
+            _facingRight = value; 
+        }
+    }
+
     public Vector3 Velocity { get; set; } = Vector3.zero;
 
     [field: Header("Gravity Stats")]
@@ -90,4 +101,12 @@ public class Player : MonoBehaviour, IMovable, IGravitable, IJump, IRoll, ISound
         Health.TakeDamage(10);
     }
 
+    private void RotatePlayer(bool facingRight)
+    {
+        float targetAngle = 180; 
+        
+        if (facingRight) targetAngle = 0f;
+        
+        transform.rotation = Quaternion.Euler(0, targetAngle, 0);
+    }
 }
