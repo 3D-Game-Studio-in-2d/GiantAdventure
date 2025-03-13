@@ -85,6 +85,8 @@ MonoBehaviour:
   playerConfig: {fileID: 11400000, guid: 9ecfecee83f8ff14f9003a9c470d659b, type: 2}
   cameraPrefab: {fileID: 3251671298318196853, guid: ae31961693235694c88b3751e00b2736,
     type: 3}
+  enemyHealthViewPrefab: {fileID: 8954793403812234678, guid: 9ea6e45a9efe225458a91ade3a6761a4,
+    type: 3}
 --- !u!114 &-2973129027588454964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,3 +103,4 @@ MonoBehaviour:
   wanderingFlameConfig: {fileID: 11400000, guid: e19bf54d312bcb34dbf02e5f8381ff15,
     type: 2}
   banditConfig: {fileID: 11400000, guid: 6d84593bbc80402438a3fed799139406, type: 2}
+  forestEntConfig: {fileID: 0}

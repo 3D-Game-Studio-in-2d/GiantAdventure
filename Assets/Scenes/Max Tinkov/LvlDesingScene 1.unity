@@ -4061,8 +4061,18 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3451882558491892382, guid: 872881b285e49d34c905f9ee81d271ab,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1900353444}
   m_SourcePrefab: {fileID: 100100000, guid: 872881b285e49d34c905f9ee81d271ab, type: 3}
+--- !u!1 &986329962 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3451882558491892382, guid: 872881b285e49d34c905f9ee81d271ab,
+    type: 3}
+  m_PrefabInstance: {fileID: 986329961}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1015082961 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4680406434504316403, guid: 55a7804551d0ecc4984cf73296216772,
@@ -5800,10 +5810,15 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 684123715286350549, guid: da3192ebcd2e0b8448dafae7f9cb167d,
+        type: 3}
+      propertyPath: sceneName
+      value: QuestionsTestScene
+      objectReference: {fileID: 0}
     - target: {fileID: 1259740466892110532, guid: da3192ebcd2e0b8448dafae7f9cb167d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20.58
+      value: 146.4
       objectReference: {fileID: 0}
     - target: {fileID: 1259740466892110532, guid: da3192ebcd2e0b8448dafae7f9cb167d,
         type: 3}
@@ -9196,6 +9211,27 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 986329961}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1900353444
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986329962}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 11.89617, y: 9.6744995, z: 7.436234}
+  m_Center: {x: -1.0340405, y: 1.0891354, z: -1.1699693}
 --- !u!1001 &1907991704
 PrefabInstance:
   m_ObjectHideFlags: 0

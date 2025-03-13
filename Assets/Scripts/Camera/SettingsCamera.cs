@@ -15,15 +15,15 @@ public class SettingsCamera : MonoBehaviour
     private CameraZone _zone;
     
     [SerializeField] private Vector3 rotation;
-    [SerializeField] private Vector3 offset;
+    //[SerializeField] private Vector3 lookOffsetX;
     
     [Inject]
     public void Initialize(Player player, IInput input,  CameraZone cameraZone)
     {
         _player = player;
 
-        _input = input;
-        _input.ClickMove += ChangeOffsetOrientation;
+        //_input = input;
+        //_input.ClickMove += ChangeOffsetOrientation;
         
         _zone = cameraZone;
     }
@@ -64,8 +64,16 @@ public class SettingsCamera : MonoBehaviour
         transform.rotation = Quaternion.Euler(rotation);
     }
 
-    private void ChangeOffsetOrientation(Vector3 inputVector)
+    /*private void ChangeOffsetOrientation(Vector3 inputVector)
     {
-        _transposer.m_TrackedObjectOffset.x = offset.x * inputVector.x;
-    }
+        if (inputVector.magnitude > 0.1f)
+        {
+            _transposer.m_TrackedObjectOffset.x = lookOffsetX.x;
+        }
+        else if (inputVector.magnitude < 0.1f)
+        {
+            _transposer.m_TrackedObjectOffset.x = -lookOffsetX.x;
+        }
+        
+    }*/
 }
