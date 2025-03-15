@@ -73,8 +73,19 @@ public class AttackController : MonoBehaviour
 
         _previousSpeed = _movable.Speed;
         _movable.Speed *= _attackPlayerStats.AttackSlowdown;
+        
+        var playerPosition = _movable.Transform;
+        Vector3 boxCenter = CorrectBoxCenter(currentStrike.BoxCenter);
+        Collider[] colliders = Physics.OverlapBox(playerPosition.position + boxCenter, currentStrike.BoxSize / 2);
 
-        float timer = 0;
+        foreach (var collider in colliders)
+        {
+            CurrentCollision(collider);
+        }
+        
+        yield return new WaitForSeconds(currentStrike.AttackDuration);
+        
+        /*float timer = 0;
         while (timer <= currentStrike.AttackDuration)
         {
             var playerPosition = _movable.Transform;
@@ -88,7 +99,7 @@ public class AttackController : MonoBehaviour
 
             yield return null;
             timer += Time.deltaTime;
-        }
+        }*/
 
         _movable.Speed = _previousSpeed;
         _attackedEntities.Clear();

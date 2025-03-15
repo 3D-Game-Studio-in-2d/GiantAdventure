@@ -13,6 +13,6 @@ public class ForestEntConfig : ScriptableObject
     [Range(0,1)] public float slowdownFactorRootStrike = 0.5f;
     public float timeCooldownAttackRootStrike = 0.5f;
     public float timeLiveRootStrike = 2f;
-    public int health = 100;
     public int damageMeleeStrike = 10;
+    public int health = 100;
 }

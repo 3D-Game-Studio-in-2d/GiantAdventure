@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
-public class ForestEntBoss : MonoBehaviour
+public class ForestEntBoss : Enemy
 {
-    public Health health;
     [SerializeField] private RootStrikeSpawner meleeRootStrike;
     [SerializeField] private RootStrikeSpawner distanceRootStrike; 
     
@@ -25,8 +24,6 @@ public class ForestEntBoss : MonoBehaviour
     [Inject]
     public void Initialize(Player player, ForestEntConfig config)
     {
-        health = new Health(config.health);
-            
         _player = player;
         
         _config = config;
@@ -38,10 +35,15 @@ public class ForestEntBoss : MonoBehaviour
         _damageMeleeStrike = config.damageMeleeStrike;
 
         _attackTimer = _attackCooldown;
+        
+        Health = new Health(config.health);
+        Health.OnDeath += OnDeath;
     }
     
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+        
         _attackTimer -= Time.deltaTime;
 
         TypeAttack();
@@ -122,5 +124,10 @@ public class ForestEntBoss : MonoBehaviour
         {
             Debug.LogWarning("Не удалось найти землю для спавна RootStrike");
         }
+    }
+
+    protected override void OnDeath()
+    {
+        Destroy(gameObject);
     }
 }

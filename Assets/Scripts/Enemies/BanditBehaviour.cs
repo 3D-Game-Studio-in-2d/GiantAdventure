@@ -192,7 +192,7 @@ public class BanditBehaviour : Enemy, IGravitable, IMovable
         isStopped = false;
     }
 
-    public override void OnDeath()
+    protected override void OnDeath()
     {
         Destroy(gameObject);
     }
