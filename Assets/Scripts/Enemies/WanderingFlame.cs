@@ -32,6 +32,8 @@ public class WanderingFlame : Enemy
     private Vector3 startPoint;
     private Vector3 destinationPoint;
     private Vector3 centerPoint;
+    
+    [SerializeField] private DamageZoneRegister damageZoneRegister;
 
     [Inject]
     public void Initialize(WanderingFlameConfig config)
@@ -49,7 +51,7 @@ public class WanderingFlame : Enemy
         startTime = Time.time; // Устанавливаем время начала движения
         isReadyToAttack = true;
         
-        
+        damageZoneRegister.OnTriggerStayWithPlayer += DamagePlayer;
     }
 
     protected override void Update()
@@ -87,7 +89,7 @@ public class WanderingFlame : Enemy
         destinationPoint = centerPoint + new Vector3(Random.Range(-Width / 2, Width / 2), Random.Range(-Height / 2, Height / 2), 0);
     }
 
-    public override void OnDeath()
+    protected override void OnDeath()
     {
         Destroy(gameObject);
     }
@@ -115,12 +117,21 @@ public class WanderingFlame : Enemy
 
     private void OnTriggerStay(Collider other)
     {
-        if (isReadyToAttack && other.transform.parent.TryGetComponent(out Player player)) // Проверяем, есть ли у объекта компонент Player
+        /*if (isReadyToAttack && other.TryGetComponent(out Player player)) // Проверяем, есть ли у объекта компонент Player
         {
             player.Health.TakeDamage(AttackDamage); // Доступ к полю Health
             isReadyToAttack = false;
             StartCoroutine(AttackCooldownTimer(AttackCooldown));
-        }
+        }*/
+    }
+    
+    private void DamagePlayer(Player player)
+    {
+        if (!isReadyToAttack) return;
+        
+        player.Health.TakeDamage(AttackDamage);
+        isReadyToAttack = false;
+        StartCoroutine(AttackCooldownTimer(AttackCooldown));
     }
 
     [ContextMenu("Тестирование Получения Урона 10")]

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3899227303146595519}
   - component: {fileID: 7913126426559208064}
   - component: {fileID: 7289554210071857576}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BossEnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd2935571cd34abea862f6e4f1dbf82b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeRootStrike: {fileID: 4086488133500378893, guid: e74b2863055d75d419577068f79255cf,
+  isReadyToAttack: 0
+  offsetHealthUI: {x: 0, y: 5, z: 0}
+  meleeRootStrike: {fileID: 4086488133500378893, guid: d6695f073e3c72c4cb0fafe9a52430cc,
     type: 3}
   distanceRootStrike: {fileID: 4086488133500378893, guid: e74b2863055d75d419577068f79255cf,
     type: 3}
@@ -140,7 +142,7 @@ GameObject:
   - component: {fileID: 4057866887735226491}
   - component: {fileID: 2542471353449226589}
   - component: {fileID: 764041852942959044}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
