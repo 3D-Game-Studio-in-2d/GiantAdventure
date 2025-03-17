@@ -5818,7 +5818,7 @@ PrefabInstance:
     - target: {fileID: 1259740466892110532, guid: da3192ebcd2e0b8448dafae7f9cb167d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 146.4
+      value: 57.5
       objectReference: {fileID: 0}
     - target: {fileID: 1259740466892110532, guid: da3192ebcd2e0b8448dafae7f9cb167d,
         type: 3}
@@ -8416,6 +8416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isReadyToAttack: 0
+  offsetHealthUI: {x: 0, y: 3, z: 0}
   radiusOfVision: 8
   backVision: 3
   <AttackDamage>k__BackingField: 10

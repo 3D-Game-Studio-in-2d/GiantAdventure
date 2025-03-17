@@ -25,7 +25,7 @@ public class SlimeBehavior : Enemy, IJump, IGravitable, IMovable
 
     private bool isReadyToJump;
     private int sideOfJump; // 1 - вправо, -1 - влево
-
+    [SerializeField] private DamageZoneRegister damageZoneRegister;
     [Inject]
     public void Initialize(SlimeConfig config)
     {
@@ -44,6 +44,8 @@ public class SlimeBehavior : Enemy, IJump, IGravitable, IMovable
         // Выбираем начальное направление и начинаем прыжки
         ChangeJumpSide();
         Invoke(nameof(PrepareForJump), stopDuration + Random.Range(-1f, 2f));
+
+        damageZoneRegister.OnTriggerStayWithPlayer += DamagePlayer;
     }
 
     protected override void Update()
@@ -110,14 +112,14 @@ public class SlimeBehavior : Enemy, IJump, IGravitable, IMovable
         return false;
     }
 
-    public override void OnDeath()
+    protected override void OnDeath()
     {
         Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && isReadyToAttack)
+        /*if (other.CompareTag("Player") && isReadyToAttack)
         {
             if (other.TryGetComponent<Player>(out Player player))
             {
@@ -125,19 +127,33 @@ public class SlimeBehavior : Enemy, IJump, IGravitable, IMovable
                 isReadyToAttack = false;
                 StartCoroutine(AttackCooldownTimer(AttackCooldown));
             }
-        }
+        }*/
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (isReadyToAttack && other.transform.parent.TryGetComponent(out Player player))
+        /*if (other.transform.IsChildOf(transform))
         {
-            player.Health.TakeDamage(AttackDamage);
-            isReadyToAttack = false;
-            StartCoroutine(AttackCooldownTimer(AttackCooldown));
-        }
+            Debug.Log("other.name = " + other.name + "\nisReadyToAttack = " + isReadyToAttack);
+            if (isReadyToAttack && other.TryGetComponent(out Player player))
+            {
+                Debug.Log("Player Player");
+                player.Health.TakeDamage(AttackDamage);
+                isReadyToAttack = false;
+                StartCoroutine(AttackCooldownTimer(AttackCooldown));
+            }
+        }*/
     }
 
+    private void DamagePlayer(Player player)
+    {
+        if (!isReadyToAttack) return;
+        
+        player.Health.TakeDamage(AttackDamage);
+        isReadyToAttack = false;
+        StartCoroutine(AttackCooldownTimer(AttackCooldown));
+    }
+    
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

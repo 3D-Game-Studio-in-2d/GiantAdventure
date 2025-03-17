@@ -82,7 +82,6 @@ public class Sound : MonoBehaviour
         else
         {
             _audioSource.PlayOneShot(clip, _volume);
-            Debug.Log("Где" + clip.name + "    " + _volume);
         }
     }
 }

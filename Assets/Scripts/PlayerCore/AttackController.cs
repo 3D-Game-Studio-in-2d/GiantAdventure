@@ -18,6 +18,7 @@ public class AttackController : MonoBehaviour
     private bool _isAttacking = false;
 
     private List<Entity> _attackedEntities = new List<Entity>();
+    
     [Inject]
     public void Initialize(IInput input, IMovable movable, AttackPlayerStats attackPlayerStats)
     {
@@ -57,7 +58,7 @@ public class AttackController : MonoBehaviour
             return;
         }
 
-        if (_currentComboIndex < _comboStrikes.Length) 
+        if (this && _currentComboIndex < _comboStrikes.Length) 
         {
             StartCoroutine(Attack());
         }
@@ -73,8 +74,19 @@ public class AttackController : MonoBehaviour
 
         _previousSpeed = _movable.Speed;
         _movable.Speed *= _attackPlayerStats.AttackSlowdown;
+        
+        var playerPosition = _movable.Transform;
+        Vector3 boxCenter = CorrectBoxCenter(currentStrike.BoxCenter);
+        Collider[] colliders = Physics.OverlapBox(playerPosition.position + boxCenter, currentStrike.BoxSize / 2);
 
-        float timer = 0;
+        foreach (var collider in colliders)
+        {
+            CurrentCollision(collider);
+        }
+        
+        yield return new WaitForSeconds(currentStrike.AttackDuration);
+        
+        /*float timer = 0;
         while (timer <= currentStrike.AttackDuration)
         {
             var playerPosition = _movable.Transform;
@@ -88,7 +100,7 @@ public class AttackController : MonoBehaviour
 
             yield return null;
             timer += Time.deltaTime;
-        }
+        }*/
 
         _movable.Speed = _previousSpeed;
         _attackedEntities.Clear();
@@ -142,5 +154,10 @@ public class AttackController : MonoBehaviour
             entity.Health.TakeDamage(_comboStrikes[_currentComboIndex].Damage);
             _attackedEntities.Add(entity);
         }
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(gameObject);
     }
 }

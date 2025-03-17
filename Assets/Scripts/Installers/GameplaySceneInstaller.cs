@@ -11,6 +11,7 @@ public class GameplaySceneInstaller : MonoInstaller
         [SerializeField] private PlayerConfig playerConfig;
         [SerializeField] private SettingsCamera cameraPrefab;
         [SerializeField] private HealthView enemyHealthViewPrefab;
+        [SerializeField] private DeadView deadView;
         
         private Player _player;
         
@@ -60,6 +61,9 @@ public class GameplaySceneInstaller : MonoInstaller
                 var healthBar = Container.Resolve<PlayerHealthView>();
                 healthBar.Initialize(_player.Health);
                 
+                Container.Bind<DeadView>().FromInstance(deadView).AsSingle();
+                var deadViewPrefab = Container.Resolve<DeadView>();
+                deadViewPrefab.Initialize(_player.Health);
         }
         
         private void InitCamera()
