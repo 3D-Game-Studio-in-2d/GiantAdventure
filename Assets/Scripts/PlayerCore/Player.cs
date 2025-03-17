@@ -96,11 +96,17 @@ public class Player : MonoBehaviour, IMovable, IGravitable, IJump, IRoll, ISound
     }
     
     [ContextMenu("Тестирование Получения Урона 10")]
-    private void ТестированиеПолученияУрона()
+    private void ТестированиеПолученияУрона10()
     {
         Health.TakeDamage(10);
     }
 
+    [ContextMenu("Тестирование Получения Урона 1000")]
+    private void ТестированиеПолученияУрона()
+    {
+        Health.TakeDamage(1000); 
+    }
+    
     private void RotatePlayer(bool facingRight)
     {
         float targetAngle = 180; 
