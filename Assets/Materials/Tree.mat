@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Grass
+  m_Name: Tree
   m_Shader: {fileID: -6465566751694194690, guid: ce007557421e69a44aadd25aab7c9855,
     type: 3}
   m_Parent: {fileID: 0}
@@ -51,14 +51,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _1: 0.07
-    - _2: 0.74
+    - _1: -0.18
+    - _2: 0.12
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _lighting_cutoff: 0.01
+    - _lighting_cutoff: 1.62
     - _shadow_brigthness: 0.43
-    - _shadow_brigthness_1: 0.46
-    - _shadow_brigthness_2: 0.56
+    - _shadow_brigthness_1: 0.22
+    - _shadow_brigthness_2: 0.46
     m_Colors:
-    - _Color: {r: 0.13706656, g: 0.3509434, b: 0.1654278, a: 0}
+    - _Color: {r: 0.5411765, g: 0.6901961, b: 0.37647063, a: 0}
   m_BuildTextureStacks: []
