@@ -87,6 +87,8 @@ MonoBehaviour:
     type: 3}
   enemyHealthViewPrefab: {fileID: 8954793403812234678, guid: 9ea6e45a9efe225458a91ade3a6761a4,
     type: 3}
+  deadView: {fileID: 9029243309707889740, guid: 1ea83314cb1e96b4f992d27e627ef0f1,
+    type: 3}
 --- !u!114 &-2973129027588454964
 MonoBehaviour:
   m_ObjectHideFlags: 0

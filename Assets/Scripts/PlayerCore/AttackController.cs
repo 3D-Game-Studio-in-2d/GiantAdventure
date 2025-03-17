@@ -18,6 +18,7 @@ public class AttackController : MonoBehaviour
     private bool _isAttacking = false;
 
     private List<Entity> _attackedEntities = new List<Entity>();
+    
     [Inject]
     public void Initialize(IInput input, IMovable movable, AttackPlayerStats attackPlayerStats)
     {
@@ -57,7 +58,7 @@ public class AttackController : MonoBehaviour
             return;
         }
 
-        if (_currentComboIndex < _comboStrikes.Length) 
+        if (this && _currentComboIndex < _comboStrikes.Length) 
         {
             StartCoroutine(Attack());
         }
@@ -153,5 +154,10 @@ public class AttackController : MonoBehaviour
             entity.Health.TakeDamage(_comboStrikes[_currentComboIndex].Damage);
             _attackedEntities.Add(entity);
         }
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(gameObject);
     }
 }
