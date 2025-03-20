@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.Animations;
 using UnityEngine;
 using Zenject;
 
@@ -26,6 +27,9 @@ public class SlimeBehavior : Enemy, IJump, IGravitable, IMovable
     private bool isReadyToJump;
     private int sideOfJump; // 1 - вправо, -1 - влево
     [SerializeField] private DamageZoneRegister damageZoneRegister;
+
+    [SerializeField] private Animator animator;
+    
     [Inject]
     public void Initialize(SlimeConfig config)
     {
@@ -37,7 +41,7 @@ public class SlimeBehavior : Enemy, IJump, IGravitable, IMovable
     {
         base.Start();
         CharacterController = GetComponent<CharacterController>();
-
+        
         isReadyToAttack = true;
         isReadyToJump = false;
 
@@ -53,6 +57,8 @@ public class SlimeBehavior : Enemy, IJump, IGravitable, IMovable
         if (CharacterController == null) return;
         base.Update();
         IsGrounded = CharacterController.isGrounded;
+        
+        animator.SetBool("Grounded", IsGrounded);
         
         ApplyGravity();
         CharacterController.Move(Velocity * Time.deltaTime);
@@ -81,7 +87,7 @@ public class SlimeBehavior : Enemy, IJump, IGravitable, IMovable
     {
         if (IsGrounded && Velocity.y < 0)
         {
-            Velocity = new Vector3(0, -2f, Velocity.z);
+            Velocity = new Vector3(0, -2f, 0);
         }
 
         float verticalVelocity = Velocity.y + Gravity * Time.deltaTime;

@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+
+[RequireComponent(typeof(CharacterController))]
 public class ForestEntBoss : Enemy
 {
     [SerializeField] private RootStrikeSpawner meleeRootStrike;
@@ -13,8 +15,11 @@ public class ForestEntBoss : Enemy
     private float _rangedAttackMeleeRootStrike = 2f;
     private float _rangedAttackDistanceRootStrike = 5f;
     private float _attackCooldown = 3f;
+    private float _speed = 3f;
     private ForestEntConfig _config;
     private int _damageMeleeStrike = 5;
+    
+    private CharacterController _controller;
     
     private float _attackTimer;
     
@@ -32,12 +37,20 @@ public class ForestEntBoss : Enemy
         _rangedAttackMeleeRootStrike = _config.rangedAttackMeleeRootStrike;
         _rangedAttackDistanceRootStrike = _config.rangedAttackDistanceRootStrike;
         _attackCooldown = _config.attackCooldown;
-        _damageMeleeStrike = config.damageMeleeStrike;
+        _damageMeleeStrike = _config.damageMeleeStrike;
+        _speed = _config.speed;
 
         _attackTimer = _attackCooldown;
         
         Health = new Health(config.health);
         Health.OnDeath += OnDeath;
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        
+        _controller = GetComponent<CharacterController>();
     }
     
     protected override void Update()
@@ -46,13 +59,24 @@ public class ForestEntBoss : Enemy
         
         _attackTimer -= Time.deltaTime;
 
+        Move();
         TypeAttack();
         OnAttack();
     }
 
+    private void Move()
+    {
+        if (_player == null) return;
+
+        var inputVector = _player.transform.position - transform.position;
+        
+        _controller.Move(inputVector * _speed * Time.deltaTime);
+    }
+    
     private void TypeAttack()
     {
         if (_player == null) return;
+        
         float distance = Vector3.Distance(_player.transform.position, transform.position);
         
         if (distance < _rangedAttackMeleeStrike)

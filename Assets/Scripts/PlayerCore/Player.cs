@@ -109,10 +109,16 @@ public class Player : MonoBehaviour, IMovable, IGravitable, IJump, IRoll, ISound
     
     private void RotatePlayer(bool facingRight)
     {
-        float targetAngle = 180; 
+        float targetAngle = -90; 
         
-        if (facingRight) targetAngle = 0f;
+        if (facingRight) targetAngle = 90;
         
         transform.rotation = Quaternion.Euler(0, targetAngle, 0);
+        
+        /*float targetScale = -1; 
+        
+        if (facingRight) targetScale = 1;
+        
+        transform.localScale = new Vector3(1, 1, targetScale);*/
     }
 }

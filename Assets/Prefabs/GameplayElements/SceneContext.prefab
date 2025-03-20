@@ -105,4 +105,5 @@ MonoBehaviour:
   wanderingFlameConfig: {fileID: 11400000, guid: e19bf54d312bcb34dbf02e5f8381ff15,
     type: 2}
   banditConfig: {fileID: 11400000, guid: 6d84593bbc80402438a3fed799139406, type: 2}
-  forestEntConfig: {fileID: 0}
+  forestEntConfig: {fileID: 11400000, guid: a5099b3e85b3dbd45aa7df935c559a27, type: 2}
+  trapsConfig: {fileID: 11400000, guid: 8220c47ecb921194280c7f429e62eec4, type: 2}

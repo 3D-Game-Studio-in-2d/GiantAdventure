@@ -1,6 +1,6 @@
 using UnityEngine;
 
-    [CreateAssetMenu(fileName = "PlayerConfig", menuName = "Configs/PlayerConfig")]
+[CreateAssetMenu(fileName = "PlayerConfig", menuName = "Configs/PlayerConfig")]
 public class PlayerConfig : ScriptableObject
 {
     [field: Header("Move Stats")]

@@ -21,4 +21,6 @@ MonoBehaviour:
   slowdownFactorRootStrike: 0.5
   timeCooldownAttackRootStrike: 0.5
   timeLiveRootStrike: 1
+  damageMeleeStrike: 10
   health: 100
+  speed: 0.09
