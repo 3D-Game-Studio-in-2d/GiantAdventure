@@ -15,4 +15,5 @@ public class ForestEntConfig : ScriptableObject
     public float timeLiveRootStrike = 2f;
     public int damageMeleeStrike = 10;
     public int health = 100;
+    public float speed = 3f;
 }
