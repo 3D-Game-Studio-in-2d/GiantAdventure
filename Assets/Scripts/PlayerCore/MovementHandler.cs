@@ -14,7 +14,10 @@ public class MovementHandler
         private ISound _sound;
 
         private float _rollTimer = 0f;
-        public MovementHandler(IInput input ,IMovable movable, IGravitable gravitable, IJump jump, IRoll roll, ISound sound)
+        
+        private PlayerAnimatorController _animatorController;
+        public MovementHandler(IInput input ,IMovable movable, IGravitable gravitable, IJump jump, IRoll roll,
+                ISound sound, PlayerAnimatorController animatorController)
         {
                 _input = input;
                 _movable = movable;
@@ -23,6 +26,8 @@ public class MovementHandler
                 _roll = roll;
                 _sound = sound;
 
+                _animatorController = animatorController;
+                
                 _input.ClickMove += OnMove;
                 _input.ClickJump += OnJump;
                 _input.ClickRoll += OnRoll;
@@ -35,7 +40,8 @@ public class MovementHandler
                 
                 UseGravity();
                 FaceVector(moveInput);
-
+                _animatorController.Grounded(_gravitable.IsGrounded);
+                
                 MoveSound(moveInput);
                 
                 _rollTimer += Time.deltaTime;
@@ -43,6 +49,9 @@ public class MovementHandler
                 if (!_roll.IsRolling)
                 {    
                         Vector3 movement = new Vector3(moveInput.x, 0, moveInput.z) * _movable.Speed;
+                        
+                        _animatorController.Idle(Mathf.Abs(movement.x));
+                        
                         _movable.CharacterController.Move(movement * Time.deltaTime);
                 }
                 
@@ -78,6 +87,8 @@ public class MovementHandler
                 {
                         float jumpVector = Mathf.Sqrt(_jump.JumpForce * -2f * _gravitable.Gravity);
                         _movable.Velocity = new Vector3(_movable.Velocity.x, jumpVector, _movable.Velocity.z);
+                        
+                        _animatorController.Jump();
                 }
         }
 
@@ -86,7 +97,8 @@ public class MovementHandler
                 if (_gravitable.IsGrounded && !_roll.IsRolling && _rollTimer >= _roll.RollCooldown)
                 {
                         _roll.IsRolling = true;
-
+                        _animatorController.Roll();
+                        
                         Vector3 rollDirection = Vector3.left;
                         
                         if (_movable.FacingRight)
