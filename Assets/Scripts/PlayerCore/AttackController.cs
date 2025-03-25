@@ -18,14 +18,17 @@ public class AttackController : MonoBehaviour
     private bool _isAttacking = false;
 
     private List<Entity> _attackedEntities = new List<Entity>();
+    private PlayerAnimatorController _playerAnimatorController;
     
     [Inject]
-    public void Initialize(IInput input, IMovable movable, AttackPlayerStats attackPlayerStats)
+    public void Initialize(IInput input, IMovable movable, AttackPlayerStats attackPlayerStats, 
+        PlayerAnimatorController playerAnimatorController)
     {
         _input = input;
         _movable = movable;
         _attackPlayerStats = attackPlayerStats;
-
+        _playerAnimatorController = playerAnimatorController;
+        
         _comboStrikes = new [] { _attackPlayerStats.First, _attackPlayerStats.Second, _attackPlayerStats.Third };
 
         _input.ClickAttack += OnAttack;
@@ -41,6 +44,8 @@ public class AttackController : MonoBehaviour
         {
             ResetCombo();
         }
+        
+        _playerAnimatorController.Attack(_isAttacking);
     }
 
     private void ResetCombo()

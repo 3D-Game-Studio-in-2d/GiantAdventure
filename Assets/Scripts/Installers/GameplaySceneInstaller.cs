@@ -49,11 +49,13 @@ public class GameplaySceneInstaller : MonoInstaller
                 
                 Container.Bind<MovementHandler>().AsSingle().NonLazy();
                 Container.BindInterfacesAndSelfTo<AttackController>()
-                        //.FromComponentOn(player.gameObject)
-                        //.FromComponentOnRoot() // Берёт компонент с корневого объекта (т.е. там же, где Player)
                         .FromNewComponentOn(_player.gameObject)
                         .AsSingle()
-                        //.WithArguments(Container.Resolve<IMovable>())
+                        .NonLazy();
+                
+                Container.BindInterfacesAndSelfTo<PlayerAnimatorController>()
+                        .FromNewComponentOn(_player.gameObject)
+                        .AsSingle()
                         .NonLazy();
                 
                 // Передать зависимость Health в UI
