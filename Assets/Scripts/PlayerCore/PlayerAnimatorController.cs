@@ -53,4 +53,9 @@ public class PlayerAnimatorController : MonoBehaviour
     {
         _animator.SetBool(attack, isAttack);
     }
+
+    public void DoubleJump()
+    {
+       // Анимация прыжка в воздухе
+    }
 }

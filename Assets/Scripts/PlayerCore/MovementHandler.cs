@@ -16,7 +16,7 @@ public class MovementHandler
         private float _rollTimer = 0f;
         
         private PlayerAnimatorController _animatorController;
-        public MovementHandler(IInput input ,IMovable movable, IGravitable gravitable, IJump jump, IRoll roll,
+        public MovementHandler(IInput input, IMovable movable, IGravitable gravitable, IJump jump, IRoll roll,
                 ISound sound, PlayerAnimatorController animatorController)
         {
                 _input = input;

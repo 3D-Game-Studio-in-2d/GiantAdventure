@@ -3,7 +3,6 @@ using UnityEngine;
 public class AttackPlayerStats
 {
         public float AttackSlowdown { get; private set; } = 1f;
-        
         public Strike First { get; private set; }
         public Strike Second { get; private set; }
         public Strike Third { get; private set; }
