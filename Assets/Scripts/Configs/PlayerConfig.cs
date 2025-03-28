@@ -9,7 +9,7 @@ public class PlayerConfig : ScriptableObject
     
     [field: Header("Gravity Stats")]
     [field: SerializeField, Range(-100, 0)] 
-    public float Gravity { get; set; }= 20f;
+    public float Gravity { get; set; } = 20f;
     
     [field: Header("Jump Stats")]
     [field: SerializeField, Range(0, 30)] 
@@ -26,7 +26,7 @@ public class PlayerConfig : ScriptableObject
     [field: Space(50)]
     [field: Header("Attack Stats")]
     [field: SerializeField, Range(0, 1)] 
-    public float AttackSlowdown { get; set; }= 0.6f;
+    public float AttackSlowdown { get; set; } = 0.6f;
     
     [field: Header("First Strike")]
     [field: SerializeField, Range(0, 100)]
