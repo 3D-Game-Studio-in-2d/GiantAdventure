@@ -88,6 +88,11 @@ public class MovementHandler
                         float jumpVector = Mathf.Sqrt(_jump.JumpForce * -2f * _gravitable.Gravity);
                         _movable.Velocity = new Vector3(_movable.Velocity.x, jumpVector, _movable.Velocity.z);
                         
+                        if (!_sound.Sound.PlaySfx("jump"))
+                        {
+                                Debug.Log("Звук отсутствует");
+                        }
+                        
                         _animatorController.Jump();
                 }
         }
@@ -126,6 +131,9 @@ public class MovementHandler
         private void MoveSound(Vector3 moveInput)
         {
                 if (Math.Abs(moveInput.x) < 0.1f || !_movable.CharacterController.isGrounded || _sound == null) return;
-                _sound.Sound.PlaySfx("move", allowOverlap: false);
+                if (!_sound.Sound.PlaySfx("move", allowOverlap: false))
+                {
+                        Debug.Log("Звук отсутствует");
+                }
         }
 }

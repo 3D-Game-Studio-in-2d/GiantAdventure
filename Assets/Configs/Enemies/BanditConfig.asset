@@ -24,4 +24,4 @@ MonoBehaviour:
   <Speed>k__BackingField: 5
   <WalkSpeed>k__BackingField: 3
   <StopDurationRange>k__BackingField: {x: 2, y: 4}
-  <Gravity>k__BackingField: 0
+  <Gravity>k__BackingField: -25.4

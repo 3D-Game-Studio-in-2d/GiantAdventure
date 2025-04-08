@@ -12,11 +12,14 @@ public class GameplaySceneInstaller : MonoInstaller
         [SerializeField] private SettingsCamera cameraPrefab;
         [SerializeField] private HealthView enemyHealthViewPrefab;
         [SerializeField] private DeadView deadView;
+        [SerializeField] private SoundConfig soundConfig;
         
         private Player _player;
         
         public override void InstallBindings()
         {
+                Container.Bind<SoundConfig>().FromInstance(soundConfig).AsSingle();
+
                 InitInput();
                 InitPlayer();
                 InitCamera();

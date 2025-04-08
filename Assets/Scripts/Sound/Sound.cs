@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class Sound : MonoBehaviour
 {
-    [SerializeField] public AudioClip[] clips;
+    [SerializeField] public ArraySound[] sounds;
     
     private AudioSource _audioSource;
     private static Action<float> OnUpdateVolume;
@@ -33,55 +33,41 @@ public class Sound : MonoBehaviour
         OnUpdateVolume?.Invoke(value);
     }
     
-    public bool PlaySfx(string clipName, float volume = 1f, bool destroyed = false, bool allowOverlap = true,
-        float pitch1 = 0.8f, float pitch2 = 1.2f)
+    public bool PlaySfx(string clipName, bool destroyed = false, bool allowOverlap = true)
     {
-        var clip = GetClipByName(clipName);
-        
-        if (clip == null)
+        foreach (var sound in sounds)
         {
-            return false;
-        }
-        else
-        {
-            PlaySfx(clip, destroyed, allowOverlap);
-            return true;
-        }
-    }
-    
-    private AudioClip GetClipByName(string clipName)
-    {
-        foreach (var clip in clips)
-        {
-            if (clip.name == clipName)
+            if (sound.name == clipName)
             {
-                return clip;
+                PlayClip(sound, destroyed, allowOverlap);
+                return true;
             }
         }
-
-        return null;
+        return false;
     }
-    
-    public void PlaySfx(AudioClip clip, bool destroyed = false, bool allowOverlap = true)
+
+    private void PlayClip(ArraySound sound, bool destroyed, bool allowOverlap)
     {
-        if (_audioSource.isPlaying && !allowOverlap)
+        // Если overlap запрещен и звук уже играет — пропускаем
+        if (!allowOverlap && _audioSource.isPlaying)
         {
+            Debug.Log("Playing clip return: " + sound.name);
             return;
         }
-        PlayClip(clip, destroyed);
-    }
-
-    private void PlayClip(AudioClip clip, bool destroyed)
-    {
-        _audioSource.pitch = 1;
+        Debug.Log("Playing clip: " + sound.name);
+        int clipIndex = Random.Range(0, sound.clips.Length);
+        AudioClip clip = sound.clips[clipIndex];
+        
+        _audioSource.pitch = Random.Range(sound.pitchStart, sound.pitchEnd);
+        _audioSource.volume = sound.volume * _volume; 
         
         if (destroyed)
         {
-            AudioSource.PlayClipAtPoint(clip, transform.position, _volume);
+            AudioSource.PlayClipAtPoint(clip, transform.position, _audioSource.volume);
         }
         else
         {
-            _audioSource.PlayOneShot(clip, _volume);
+            _audioSource.PlayOneShot(clip, _audioSource.volume);
         }
     }
 }

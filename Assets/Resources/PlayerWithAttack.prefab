@@ -152,8 +152,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6959ff7d6a17434997888485ff71330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clips:
-  - {fileID: 8300000, guid: e8f455547c35fce42afb5eb48d84b8e6, type: 3}
+  sounds:
+  - name: jump
+    pitchStart: 1
+    pitchEnd: 1
+    volume: 0.382
+    clips:
+    - {fileID: 8300000, guid: c97db777447e1c74c83b76ad198ddf97, type: 3}
+    - {fileID: 8300000, guid: 572383a76738c674884820efa643308d, type: 3}
+    - {fileID: 8300000, guid: 6435faba6a6cb2849895cd9b44d3afb3, type: 3}
+    - {fileID: 8300000, guid: 91a1cccabcd151d42b131fc84d41b61d, type: 3}
+    - {fileID: 8300000, guid: e3772ba580a0b2348bdf94f854d6f0ee, type: 3}
+  - name: move
+    pitchStart: 1
+    pitchEnd: 1
+    volume: 0.52
+    clips:
+    - {fileID: 8300000, guid: 118ea15b4c4511f4eb8fc3d82209b9fc, type: 3}
+    - {fileID: 8300000, guid: 7a75a44132c238044bf4d2abbd11408c, type: 3}
+    - {fileID: 8300000, guid: 35c8d908ca54b7e42a445f27a6be7007, type: 3}
+    - {fileID: 8300000, guid: 35c72d0563e8b2a4aa171ceb54ec22dc, type: 3}
+    - {fileID: 8300000, guid: c365ae79b4070b04cbf8f3bc89b88fda, type: 3}
+    - {fileID: 8300000, guid: 4cb7a7cba40820c40bad2669fff32857, type: 3}
+    - {fileID: 8300000, guid: 99ec833aab22f944cb4a7caa8fd8723a, type: 3}
+    - {fileID: 8300000, guid: 8ffea3dd88ece7049aaba0e074963262, type: 3}
 --- !u!82 &-3017677984182933167
 AudioSource:
   m_ObjectHideFlags: 0

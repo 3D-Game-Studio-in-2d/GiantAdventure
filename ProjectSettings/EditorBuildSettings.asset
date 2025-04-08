@@ -15,15 +15,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Max Tinkov/LvlDesingScene 1.unity
     guid: 4e6e467e1d1621e4fbb8bee3131c5b59
   - enabled: 1
-    path: Assets/Scenes/MainScenes/Village(1).unity
-    guid: 195c12b7f54dcb9499ee0a7ad2bd2331
-  - enabled: 1
     path: Assets/Scenes/MainScenes/DarkForest(2).unity
-    guid: f55ac109006e23e4ca3a6337c2374f1e
+    guid: 9504289df8b27104a93c211d6ac06539
   - enabled: 1
     path: Assets/Scenes/KPuCTaJluK_Scenes/KPuCTaJl_forest.unity
     guid: f7d66a3ade5809f45883f84d9df40cfe
   - enabled: 1
     path: Assets/Scenes/KPuCTaJluK_Scenes/KPuCTaJluK_village.unity
     guid: 80a35c6691059154b833cbd16a6bb8cc
+  - enabled: 1
+    path: Assets/Scenes/Amely/Village(1).unity
+    guid: 3a0f58828c454d545bdee851f0a4287a
   m_configObjects: {}

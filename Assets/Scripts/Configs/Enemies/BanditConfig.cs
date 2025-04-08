@@ -22,5 +22,5 @@ public class BanditConfig : ScriptableObject
         [field: SerializeField, Range(0.1f, 100)] public float Speed { get; set; } = 3f;
         [field: SerializeField, Range(0.1f, 100)] public float WalkSpeed { get; set; } = 1f;
         [field: SerializeField] public Vector2 StopDurationRange { get; set; } = new Vector2(1f, 2f);
-        [field: SerializeField, Range(0, 100)] public float Gravity { get; set; } = -10f;
+        [field: SerializeField, Range(-50f, 0f)] public float Gravity { get; set; } = -10f;
 }
