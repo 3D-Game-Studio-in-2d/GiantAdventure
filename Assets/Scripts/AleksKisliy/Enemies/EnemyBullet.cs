@@ -4,17 +4,17 @@ namespace Game.Enemies
 {
     public class EnemyBullet : MonoBehaviour
     {
-        [SerializeField] private float speed = 5f;
-        [SerializeField] private int damage = 1;
-        [SerializeField] private float lifeTime = 5f;
-        [SerializeField] private LayerMask targetLayer;
+        public float speed = 5f;
+        public int damage = 1;
+        public float lifeTime = 5f;
+        public LayerMask targetLayer;
 
         private Vector3 direction;
 
         public void Init(Vector3 shootDirection)
         {
             direction = shootDirection.normalized;
-            Destroy(gameObject, lifeTime); // автоудаление
+            Destroy(gameObject, lifeTime);
         }
 
         private void Update()
@@ -24,16 +24,15 @@ namespace Game.Enemies
 
         private void OnTriggerEnter(Collider other)
         {
-            int otherLayerMask = 1 << other.gameObject.layer;
-            if ((targetLayer.value & otherLayerMask) != 0)
+            if (((1 << other.gameObject.layer) & targetLayer) != 0)
             {
                 if (other.TryGetComponent(out Player player))
                 {
                     player.Health.TakeDamage(damage);
                 }
-            }
 
-            Destroy(gameObject);
+                Destroy(gameObject);
+            }
         }
     }
 }

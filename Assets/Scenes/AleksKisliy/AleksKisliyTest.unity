@@ -10296,10 +10296,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7473160799005731865, guid: aa1a8a748ec2118428d6c2695688c207,
+        type: 3}
+      propertyPath: detectionRange
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 9119456181001540143, guid: aa1a8a748ec2118428d6c2695688c207,
         type: 3}
       propertyPath: m_Name
-      value: TestEnemy
+      value: WolfEnemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

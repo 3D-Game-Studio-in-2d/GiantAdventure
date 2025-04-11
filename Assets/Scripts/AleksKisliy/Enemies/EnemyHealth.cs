@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace Game.Enemies
 {
-    public class EnemyHealth : MonoBehaviour
+    public class EnemyHealth : MonoBehaviour, IDamageable
     {
         public int maxHealth = 3;
         private int currentHealth;
@@ -11,7 +11,7 @@ namespace Game.Enemies
         public UnityEvent onTakeDamage;
         public UnityEvent onDie;
 
-        void Start()
+        private void Start()
         {
             currentHealth = maxHealth;
         }
@@ -24,7 +24,7 @@ namespace Game.Enemies
             if (currentHealth <= 0)
             {
                 onDie?.Invoke();
-                Destroy(gameObject, 0.5f);
+                Destroy(gameObject, 0.1f);
             }
         }
     }

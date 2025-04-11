@@ -7,8 +7,8 @@ namespace Game.Enemies
     public class EnemyChasePlayer : MonoBehaviour
     {
         [Header("Chase Settings")]
-        [HideInInspector] public float detectionRange = 5f;
-        [HideInInspector] public float speed = 3f;
+        [SerializeField] private float detectionRange = 5f;
+        [SerializeField] private float speed = 3f;
         [SerializeField] private float minDistanceToPlayer = 1.5f;
         public UnityEvent onChaseStart;
 
