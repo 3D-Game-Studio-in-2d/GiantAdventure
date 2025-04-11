@@ -7,10 +7,13 @@ namespace Game.Enemies
     {
         private Animator animator;
 
-        void Awake()
+        private void Awake()
         {
             animator = GetComponent<Animator>();
+        }
 
+        void Start()
+        {
             var shoot = GetComponent<EnemyShoot>();
             var health = GetComponent<EnemyHealth>();
             var patrol = GetComponent<EnemyPatrol>();
@@ -22,8 +25,16 @@ namespace Game.Enemies
                 health.onTakeDamage.AddListener(() => animator.SetTrigger("Hit"));
                 health.onDie.AddListener(() => animator.SetTrigger("Die"));
             }
-            if (patrol != null) patrol.onReachPoint.AddListener(() => animator.SetTrigger("Patrol"));
-            if (chase != null) chase.onChaseStart.AddListener(() => animator.SetBool("Run", true));
+            if (chase != null)
+            {
+                chase.onChaseStart.AddListener(() => animator.SetBool("Chase", true));
+                chase.onAttack.AddListener(() => animator.SetBool("Chase", false));
+            }
+        }
+
+        public void CheseON()
+        {
+            animator.SetBool("Chase", true);
         }
     }
 }

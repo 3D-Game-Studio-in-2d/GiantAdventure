@@ -10,7 +10,13 @@ namespace Game.Enemies
         [SerializeField] private float detectionRange = 5f;
         [SerializeField] private float speed = 3f;
         [SerializeField] private float minDistanceToPlayer = 1.5f;
+
         public UnityEvent onChaseStart;
+        public UnityEvent onAttack;
+
+        [Header("Attack")]
+        [SerializeField] private float attackRate = 1f;
+        private float lastAttackTime = 0f;
 
         [Header("Vision")]
         [SerializeField] private Transform visionOrigin;
@@ -30,14 +36,12 @@ namespace Game.Enemies
         {
             _rigidbody = GetComponent<Rigidbody>();
             _rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
-
             _patrol = GetComponent<EnemyPatrol>();
         }
 
         private void Start()
         {
             _player = GameObject.FindWithTag("Player")?.transform;
-
             if (_player == null)
                 Debug.LogError("»грок с тегом 'Player' не найден!");
         }
@@ -58,18 +62,22 @@ namespace Game.Enemies
                     if (_patrol != null) _patrol.enabled = false;
                 }
 
-                if (distance > minDistanceToPlayer)
-                    Chase(toPlayer.normalized);
-
                 TryRotateToPlayer(toPlayer);
-            }
-            else
-            {
-                if (chasing)
+
+                if (distance > minDistanceToPlayer)
                 {
-                    chasing = false;
-                    if (_patrol != null) _patrol.enabled = true;
+                    Chase(toPlayer.normalized);
                 }
+                else if (Time.time - lastAttackTime >= attackRate)
+                {
+                    onAttack?.Invoke();
+                    lastAttackTime = Time.time;
+                }
+            }
+            else if (chasing)
+            {
+                chasing = false;
+                if (_patrol != null) _patrol.enabled = true;
             }
         }
 
@@ -80,10 +88,7 @@ namespace Game.Enemies
             Vector3 origin = visionOrigin != null ? visionOrigin.position : transform.position;
             Vector3 direction = (_player.position - origin).normalized;
 
-            Ray ray = new Ray(origin, direction);
-            Debug.DrawRay(origin, direction * visionDistance, Color.red);
-
-            if (Physics.Raycast(ray, out RaycastHit hit, visionDistance, visionMask))
+            if (Physics.Raycast(origin, direction, out RaycastHit hit, visionDistance, visionMask))
             {
                 return hit.transform.CompareTag("Player");
             }
@@ -109,6 +114,14 @@ namespace Game.Enemies
                     lastTurnTime = Time.time;
                 }
             }
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            if (visionOrigin == null) return;
+
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawRay(visionOrigin.position, transform.right * visionDistance);
         }
     }
 }

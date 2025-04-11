@@ -1,33 +1,41 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Game.Enemies
 {
+    [RequireComponent(typeof(Rigidbody))]
     public class EnemyPatrol : MonoBehaviour
     {
         [SerializeField] private Transform[] patrolPoints;
+        [SerializeField] private float speed = 2f;
+
         private int currentPoint = 0;
+        private Rigidbody _rigidbody;
 
-        [HideInInspector] public float speed = 2f;
-        public UnityEvent onReachPoint;
+        private void Awake()
+        {
+            _rigidbody = GetComponent<Rigidbody>();
+            _rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
+        }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (patrolPoints.Length == 0) return;
 
             Transform target = patrolPoints[currentPoint];
-            transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            Vector3 direction = (target.position - transform.position).normalized;
 
-            // Поворот к следующей точке
-            if ((target.position.x - transform.position.x) != 0)
+            if (direction.x != 0)
             {
-                float dir = Mathf.Sign(target.position.x - transform.position.x);
-                transform.rotation = dir > 0 ? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(0, 180f, 0);
+                float sign = Mathf.Sign(direction.x);
+                Quaternion rot = Quaternion.Euler(0, sign > 0 ? 0 : 180f, 0);
+                transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.fixedDeltaTime * 5f);
             }
+
+            Vector3 move = direction * speed * Time.fixedDeltaTime;
+            _rigidbody.MovePosition(_rigidbody.position + new Vector3(move.x, 0f, 0f));
 
             if (Vector3.Distance(transform.position, target.position) < 0.2f)
             {
-                onReachPoint?.Invoke();
                 currentPoint = (currentPoint + 1) % patrolPoints.Length;
             }
         }

@@ -1227,7 +1227,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7456756517690366173}
   m_Layer: 0
-  m_Name: TestEnemy
+  m_Name: Wolf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
