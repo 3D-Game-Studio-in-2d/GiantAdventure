@@ -22,19 +22,25 @@ namespace Game.Enemies
             if (shoot != null) shoot.onShoot.AddListener(() => animator.SetTrigger("Shoot"));
             if (health != null)
             {
-                health.onTakeDamage.AddListener(() => animator.SetTrigger("Hit"));
+                //health.onTakeDamage.AddListener(() => animator.SetTrigger("Hit"));
                 health.onDie.AddListener(() => animator.SetTrigger("Die"));
             }
             if (chase != null)
             {
                 chase.onChaseStart.AddListener(() => animator.SetBool("Chase", true));
-                chase.onAttack.AddListener(() => animator.SetBool("Chase", false));
+                chase.onChaseEnd.AddListener(() => animator.SetBool("Chase", false));
+                chase.onAttack.AddListener(() => animator.SetTrigger("Attack"));
             }
         }
 
         public void CheseON()
         {
-            animator.SetBool("Chase", true);
+            Debug.Log("Начинаем приследование");
+        }
+
+        public void Attack()
+        {
+            Debug.Log("Начинаем атаковать");
         }
     }
 }

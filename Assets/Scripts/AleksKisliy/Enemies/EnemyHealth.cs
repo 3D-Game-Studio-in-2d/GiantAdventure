@@ -5,13 +5,16 @@ namespace Game.Enemies
 {
     public class EnemyHealth : MonoBehaviour, IDamageable
     {
-        public int maxHealth = 3;
+        [SerializeField] private int maxHealth = 3;
         private int currentHealth;
 
-        public UnityEvent onTakeDamage;
+        public UnityEvent<int, int> onTakeDamage;
         public UnityEvent onDie;
 
-        private void Start()
+        public int MaxHealth => maxHealth;
+        public int CurrentHealth => currentHealth;
+
+        private void Awake()
         {
             currentHealth = maxHealth;
         }
@@ -19,7 +22,7 @@ namespace Game.Enemies
         public void TakeDamage(int amount)
         {
             currentHealth -= amount;
-            onTakeDamage?.Invoke();
+            onTakeDamage?.Invoke(currentHealth, maxHealth);
 
             if (currentHealth <= 0)
             {

@@ -12,7 +12,9 @@ namespace Game.Enemies
         [SerializeField] private float minDistanceToPlayer = 1.5f;
 
         public UnityEvent onChaseStart;
+        public UnityEvent onChaseEnd;
         public UnityEvent onAttack;
+
 
         [Header("Attack")]
         [SerializeField] private float attackRate = 1f;
@@ -24,6 +26,7 @@ namespace Game.Enemies
         [SerializeField] private LayerMask visionMask;
 
         [Header("Rotation")]
+        [SerializeField] private Transform visualTransform;
         [SerializeField] private float turnInterval = 1f;
         private float lastTurnTime = 0f;
 
@@ -78,6 +81,7 @@ namespace Game.Enemies
             {
                 chasing = false;
                 if (_patrol != null) _patrol.enabled = true;
+                onChaseEnd?.Invoke();
             }
         }
 
@@ -108,9 +112,9 @@ namespace Game.Enemies
             if (Time.time - lastTurnTime >= turnInterval)
             {
                 float moveX = Mathf.Sign(direction.x);
-                if (moveX != 0)
+                if (moveX != 0 && visualTransform != null)
                 {
-                    transform.rotation = moveX > 0 ? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(0, 180f, 0);
+                    visualTransform.rotation = moveX > 0 ? Quaternion.Euler(0, 90f, 0) : Quaternion.Euler(0, -90f, 0);
                     lastTurnTime = Time.time;
                 }
             }
