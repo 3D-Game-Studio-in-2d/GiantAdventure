@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using Zenject;
 
@@ -87,6 +88,10 @@ public class AttackController : MonoBehaviour
         foreach (var collider in colliders)
         {
             CurrentCollision(collider);
+            if (collider.transform.TryGetComponent(out IDamageable damageable))
+            {
+                damageable.TakeDamage(_comboStrikes[_currentComboIndex].Damage);
+            }
         }
         
         yield return new WaitForSeconds(currentStrike.AttackDuration);

@@ -3448,11 +3448,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8190999064184768061, guid: 100abdbdc7421ae42bc53cbb872ef91c,
         type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.9405003
-      objectReference: {fileID: 0}
-    - target: {fileID: 8190999064184768061, guid: 100abdbdc7421ae42bc53cbb872ef91c,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.7754507
       objectReference: {fileID: 0}
@@ -9990,7 +9985,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
