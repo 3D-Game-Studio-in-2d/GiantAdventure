@@ -6,24 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/QuestioncScenes/MenuScene.unity
-    guid: f453aa071381ede4f8223d414e9213a3
+    path: Assets/Scenes/MainScenes/Village(1).unity
+    guid: 195c12b7f54dcb9499ee0a7ad2bd2331
   - enabled: 1
-    path: Assets/Scenes/QuestioncScenes/QuestionsTestScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/MainScenes/DarkForest.unity
+    guid: 9974014ba497e9a4188a2db5b2d8cbdb
   - enabled: 1
-    path: Assets/Scenes/Max Tinkov/LvlDesingScene 1.unity
-    guid: 4e6e467e1d1621e4fbb8bee3131c5b59
-  - enabled: 1
-    path: Assets/Scenes/MainScenes/DarkForest(2).unity
-    guid: 9504289df8b27104a93c211d6ac06539
-  - enabled: 1
-    path: Assets/Scenes/KPuCTaJluK_Scenes/KPuCTaJl_forest.unity
-    guid: f7d66a3ade5809f45883f84d9df40cfe
-  - enabled: 1
-    path: Assets/Scenes/KPuCTaJluK_Scenes/KPuCTaJluK_village.unity
-    guid: 80a35c6691059154b833cbd16a6bb8cc
-  - enabled: 1
-    path: Assets/Scenes/Amely/Village(1).unity
-    guid: 3a0f58828c454d545bdee851f0a4287a
+    path: Assets/Scenes/MainScenes/MountainsSanctuary(3).unity
+    guid: 350a6953df8adb2499edec222be59b15
   m_configObjects: {}

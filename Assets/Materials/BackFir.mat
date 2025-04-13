@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Grass 2
+  m_Name: BackFir
   m_Shader: {fileID: -6465566751694194690, guid: ce007557421e69a44aadd25aab7c9855,
     type: 3}
   m_Parent: {fileID: 0}
@@ -60,5 +60,5 @@ Material:
     - _shadow_brigthness_1: 0.46
     - _shadow_brigthness_2: 0.56
     m_Colors:
-    - _Color: {r: 0.18912424, g: 0.4716981, b: 0.37021038, a: 0}
+    - _Color: {r: 0.25978997, g: 0.3962264, b: 0.36134827, a: 0}
   m_BuildTextureStacks: []

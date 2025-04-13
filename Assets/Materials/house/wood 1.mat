@@ -60,5 +60,5 @@ Material:
     - _shadow_brigthness_1: 0.46
     - _shadow_brigthness_2: 0.56
     m_Colors:
-    - _Color: {r: 0.3283019, g: 0.20989403, b: 0.10840154, a: 0}
+    - _Color: {r: 0.3018868, g: 0.16843592, b: 0.089711644, a: 0}
   m_BuildTextureStacks: []
